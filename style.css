@@ -282,3 +282,9 @@ a.t88x31 img {
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
 }
+
+@media(max-width:991px) {
+    .content-desktop {
+           display:none;
+    }
+}
