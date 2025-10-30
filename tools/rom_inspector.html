@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirb's corner</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/src/script.js"></script>
+    <script src="/src/rom_inspector.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/src/regular/style.css" />
+
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KirbSite" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+</head>
+
+<body>
+    <div id="main">
+        <fieldset class="bigbox">
+            <h1 id="quote">•ROM Inspector</h1>
+        </fieldset>
+
+        <br>
+
+        <div id="contentblock">
+            <!--NAVBAR START-->
+            <div id="sidebar">
+                <fieldset class="lilbox" style="flex-grow: 1;">
+                    <legend>Navigation</legend>
+                    <h3 class="ruletitle">
+                        <div class="ruletitletext">Pages</div>
+                        <div class="ruletitleline"></div>
+                    </h3>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/projects.html">My stuff</a></li>
+                        <li><a href="/bit.html">My sona</a></li>
+                        <li><a href="/earthbound/dump.html">PK Hack dump</a></li>
+                        <li><a href="/tools/tools_home.html">Tools</a></li>
+                    </ul>
+            
+                    <h3 class="ruletitle">
+                        <div class="ruletitletext">Cool people</div>
+                        <div class="ruletitleline"></div>
+                    </h3>
+                    
+                    <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
+                        <img width="88" height="31" src="https://chromonym.pages.gay/buttons/cyan.png" alt="cyan.pet button"/>
+                    </a>
+                    
+                    <a class="t88x31" title="gabbi!" href="https://www.youtube.com/channel/UCXDuYoKVMnHNL7oNHjqEoOg/videos" target="_blank">
+                        <img src="https://livvy94.neocities.org/images/buttons/gabbi.gif" alt="gabbi button">
+                    </a>
+            
+                    <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
+                    <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
+                    </a>
+                    
+                </fieldset>
+            </div>
+            <!--NAVBAR END-->
+
+            <div id="contentmain">
+                <fieldset class="lilbox hgrow">
+                    <legend>ROM Inspector</legend>
+                    
+                    <a href="tools_home.html">< Back to Tools</a>
+
+                    <noscript>
+                        <h2 style="text-align: center">This tool requires JavaScript in order to function. Please enable JavaScript.</h1>
+                    </noscript>
+                    <p>
+                        There are a few kinds of EarthBound ROMs out there.
+                        Select an EarthBound ROM on your device. The tool will analyse it to see if it's recognised.
+                        This is useful for identifying that you've got a clean ROM.
+                        If the ROM is recognised but nonstandard, it can be fixed.
+                    </p>
+                    
+                    <div style="text-align: center; padding: 10px">
+                        <label for="eb-rom-in" class="fileupload">Open ROM</label>
+                        <input type="file" id="eb-rom-in" accept=".smc, .sfc">
+                    </div>
+                    
+                    <!--This is shown after selecting a file; any file-->
+                    <div id="eb-rom-info-area" style="display:none">
+                        <table id="eb-rom-info-table">
+                            <th colspan=2 id="eb-file-name">(Open a ROM)</th>
+                            <tr>
+                                <th>ROM type</th>
+                                <td id="eb-found-rom-type"></td>
+                            </tr>
+                            <tr>
+                                <th>Size</th>
+                                <td id="eb-size"></td>
+                            </tr>
+                            <tr>
+                                <th>CRC32 hash</th>
+                                <td id="eb-crc32"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br>
+
+                    <!--This is shown after we select a recognised, fixable ROM-->
+                    <div id="eb-fix-rom-area" style="text-align: center; display: none;">
+                        <p id="eb-fix-rom-status"></p>
+                        <button type="button" id="eb-fix-rom-button">Fix it!</button>
+                    </div>
+                </fieldset>
+                <fieldset class="lilbox hgrow">
+                    <legend>Information about ROMs</legend>
+                    <p>
+                        While most EB ROMs floating around are already clean, some will have minor differences (that don't impact the game at all, just the file).
+                        Additionally, several legacy hacking tools will expand the ROM in a strange way or expect a copier header.
+                        Modern hacking tools usually expect a 24 megabit headerless ROM.
+                    </p>
+                    <p>
+                        The copier header is a 512-byte block preceding the ROM data that used to be added by devices that dumped SNES cartridges,
+                        such as the Super Magicom. It contains information about the copier device. Emulators are smart enough to recognise this,
+                        but tools that edit the ROM expect things to be in very specific locations. Also, so do patches. So a clean ROM is vital for hacking.
+                    </p>
+                    <!--Gets unhidden on page load. It's populated with the tool's internal info.-->
+                    <div id="eb-known-rom-info" style="display:none">
+                        <p>
+                            Here's a table of the ROMs that this tool recognises and their information. The 24-megabit headerless ROM is the clean one.
+                        </p>
+                        <table id="eb-known-rom-table">
+                            <tr>
+                                <th>ROM type</th>
+                                <th>Size</th>
+                                <th>CRC32 hash</th>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

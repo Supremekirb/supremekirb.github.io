@@ -20,6 +20,7 @@ NAVPANE = f"""\
             <li><a href="/projects.html">My stuff</a></li>
             <li><a href="/bit.html">My sona</a></li>
             <li><a href="/earthbound/dump.html">PK Hack dump</a></li>
+            <li><a href="/tools/tools_home.html">Tools</a></li>
         </ul>
 
         <h3 class="ruletitle">

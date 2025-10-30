@@ -52,6 +52,24 @@ fieldset {
     border: none;
 }
 
+table {
+    background-color: var(--ebbg);
+    border-radius: 5px;
+    /* border: 1px solid white; */
+    box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg);
+    margin: 10px auto;
+    border-collapse: collapse;
+    /* border-spacing: 10px; */
+}
+
+th,
+td {
+    border: 1px solid var(--ebwhite);
+    /* border-radius: 5px; */
+    /* box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg); */
+    padding: 10px;
+}
+
 .lilbox,
 .codeblock,
 .boxbutton,
@@ -188,6 +206,41 @@ iframe {
     border: 1px solid var(--ebwhite);
 }
 
+button {
+    background-color: var(--ebbg);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: var(--ebwhite);
+    text-decoration: none;
+    padding-top: 10px;
+    margin: 10px 12px;
+    font-family: Motherish;
+    box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--ebpurple);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.fileupload {
+    box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg);
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.fileupload:hover {
+    background-color: var(--ebpurple);
+}
+
 .boxbutton {
     background-color: var(--ebbg);
     border-radius: 5px;
@@ -247,6 +300,7 @@ img {
     gap: 5%;
     padding: 1%
 }
+
 @media(max-width: 991px) {
     #contentblock {
         display: block;
@@ -259,6 +313,7 @@ img {
     flex-direction: column;
     margin: 0%;
 }
+
 /* make it 100% of width on mobile devices */
 @media(max-width: 991px) {
     #contentmain {
@@ -271,6 +326,7 @@ img {
     display: flex;
     flex-grow: 1;
 }
+
 /* make it hidden on mobile devices */
 /* @media(max-width: 991px) {
     #sidebar {
@@ -301,26 +357,31 @@ a.t88x31 img {
 }
 
 .project-entry {
-    display:flex;
-    gap:5%;
-    padding:1%
+    display: flex;
+    gap: 5%;
+    padding: 1%
 }
+
 @media(max-width: 991px) {
     .project-entry {
         display: block;
     }
 }
+
 .project-text {
     flex: 50%
 }
+
 .project-image {
     flex: 50%
 }
+
 .project-links {
-    display:flex;
-    flex-direction:row;
-    justify-content:flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
+
 @media(max-width: 991px) {
     .project-links {
         flex-direction: column;
