@@ -121,8 +121,14 @@
                     </p>
                     <p>
                         The copier header is a 512-byte block preceding the ROM data that used to be added by devices that dumped SNES cartridges,
-                        such as the Super Magicom. It contains information about the copier device. Emulators are smart enough to recognise this,
+                        such as the Super Magicom. It's normally used to store information about the copier device, but when artifically adding a header,
+                        it's common to just fill it with zeroes. Emulators are smart enough to recognise when a copier header is present,
                         but tools that edit the ROM expect things to be in very specific locations. Also, so do patches. So a clean ROM is vital for hacking.
+                    </p>
+                    <p>
+                        The ROM can also be expanded to 32 megabits or 48 megabits by hacking tools in order to fit more stuff.
+                        CoilSnake does this the proper way, copying data for ExHiROM correctly and filling blank space with zeroes.
+                        JHack (aka PK Hack) does it a weird way, filling a portion of the blank space with a repeating pattern of zeroes and twos.
                     </p>
                     <!--Gets unhidden on page load. It's populated with the tool's internal info.-->
                     <div id="eb-known-rom-info" style="display:none">
@@ -136,6 +142,9 @@
                                 <th>CRC32 hash</th>
                             </tr>
                         </table>
+                        <p>
+                            If you have a valid EB ROM that isn't in this table, contact me so I can investigate and add it to this tool.
+                        </p>
                     </div>
                 </fieldset>
             </div>

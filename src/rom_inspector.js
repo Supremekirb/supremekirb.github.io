@@ -32,13 +32,23 @@ const EB_KNOWN_ROMS = new Map([
         "size": 0x400000+512,
         "fix": EBROM_fix_headered
     }],
+    [0x1d1c945c, {
+        "name": "32Mbit with dirty header",
+        "size": 0x600000+512,
+        "fix": EBROM_fix_headered
+    }],
     [0xf8880956, {
         "name": "JHack 32Mbit headerless",
         "size": 0x400000,
         "fix": EBROM_fix_unheadered
     }],
+    [0x52cf7a10, {
+        "name": "JHack 32Mbit with clean header",
+        "size": 0x400000+512,
+        "fix": EBROM_fix_headered
+    }],
     [0x7289e2cd, {
-        "name": "JHack 32Mbit with header",
+        "name": "JHack 32Mbit with dirty header",
         "size": 0x400000+512,
         "fix": EBROM_fix_headered
     }],
@@ -52,13 +62,23 @@ const EB_KNOWN_ROMS = new Map([
         "size": 0x600000+512,
         "fix": EBROM_fix_headered
     }],
+    [0x65482eec, {
+        "name": "48Mbit with dirty header",
+        "size": 0x600000+512,
+        "fix": EBROM_fix_headered
+    }],
     [0x7046144b, {
         "name": "JHack 48Mbit headerless",
         "size": 0x600000,
         "fix": EBROM_fix_unheadered
     }],
+    [0x4e20c593, {
+        "name": "JHack 48Mbit with clean header",
+        "size": 0x600000+512,
+        "fix": EBROM_fix_headered
+    }],
     [0xe45bce82, {
-        "name": "JHack 48Mbit with header",
+        "name": "JHack 48Mbit with dirty header",
         "size": 0x600000+512,
         "fix": EBROM_fix_headered
     }],
@@ -166,6 +186,11 @@ function inspectROM(array) {
 // Callback when ROM fix button is pressed
 function fixROM(array) {
     cleaned = EB_KNOWN_ROMS.get(crc32).fix(array)
+    // If somehow the ROM cleaning failed to produce a clean ROM
+    cleanCrc32 = hash_crc32(cleaned)
+    if (cleanCrc32 != EB_BASE_CRC32) {
+        throw new Error(`ROM cleaning was unsuccessful. Expected CRC32 0x${EB_BASE_CRC32.toString(16).toUpperCase()}, got 0x${cleanCrc32.toString(16).toUpperCase()}.`)
+    }
     downloadBlob(cleaned, 'EarthBound_Clean.sfc', 'application/octet-stream')
 }
 
