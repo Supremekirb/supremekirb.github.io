@@ -8,8 +8,9 @@
     --eblightgrey: #98A080;
     --ebgrey: #889090;
     --ebpurple: #7038D0;
-    --cpurple: #8f63db;
-    /* better contrast than ebpurple */
+    --cpurple: #8f63db; /* better contrast than ebpurple */
+    --cbg: #2C2C2C; /* for alternating rows */
+
 }
 
 @font-face {
@@ -68,6 +69,10 @@ td {
     /* border-radius: 5px; */
     /* box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg); */
     padding: 10px;
+}
+
+.alternatingrows:nth-child(even) {
+    background-color: var(--cbg);
 }
 
 .lilbox,

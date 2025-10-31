@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let table = document.getElementById("eb-known-rom-table")
     for (const [key, value] of EB_KNOWN_ROMS.entries()) {
         let row = table.insertRow()
+        row.classList.add("alternatingrows") 
         let cell_name  = row.insertCell()
         let cell_size  = row.insertCell()
         let cell_crc32 = row.insertCell()
