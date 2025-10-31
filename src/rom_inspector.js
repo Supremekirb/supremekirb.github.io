@@ -10,7 +10,7 @@ const EB_KNOWN_ROMS = new Map([
     [EB_BASE_CRC32, {
         "name": "24Mbit headerless",
         "size": EB_BASE_SIZE,
-        "fix": function (rom) { return }
+        "fix": function (array) { return array }
     }],
     [0xfb72d282, {
         "name": "24Mbit with clean header",
