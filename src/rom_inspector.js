@@ -34,7 +34,7 @@ const EB_KNOWN_ROMS = new Map([
     }],
     [0x1d1c945c, {
         "name": "32Mbit with dirty header",
-        "size": 0x600000+512,
+        "size": 0x400000+512,
         "fix": EBROM_fix_headered
     }],
     [0xf8880956, {
