@@ -1,13 +1,7 @@
 import glob
 import re
 
-MAGIC1 = "<!--NAVBAR START-->"
-MAGIC2 = "<!--NAVBAR END-->"
-
-PATTERN = r"(.+?<!--NAVBAR START-->(.|\n)+?<!--NAVBAR END-->)"
-
-NAVPANE = f"""\
-{MAGIC1}
+NAVPANE = """\
 <div id="sidebar">
     <fieldset class="lilbox" style="flex-grow: 1;">
         <legend>Navigation</legend>
@@ -42,24 +36,36 @@ NAVPANE = f"""\
         
     </fieldset>
 </div>
-{MAGIC2}"""
+"""
 
-for i in glob.glob("**/*.html", root_dir=".", recursive=True):
-    print(f"Applying navbar to {i}")
-    new = ""
+FOOTER = """\
+<img src="images/gayass-derg/laptop.png" style="max-width: 100%;">
+"""
+
+def block_sub(text, magic1, magic2, block):
     indent = ""
     
-    with open(i, "r") as file:
-        for j in file.readlines():
-            if j.strip().startswith(MAGIC1):
-                indent = j.split(MAGIC1)[0]
-                break
-        indented_navpane = str().join((indent + l) for l in NAVPANE.splitlines(keepends=True))
-            
-        file.seek(0)
-        text = file.read()
+    for i in text.split("\n"):
+        if i.strip().startswith(magic1):
+            indent = i.split(magic1)[0]
+            print(f"Indent is '{indent}'")
+            break
+    indented_block = indent + magic1 + "\n" + str().join((indent + l) for l in block.splitlines(keepends=True)) + indent + magic2
         
-        new = re.sub(PATTERN, indented_navpane, text)
+    text = "".join(text)
+
+    return re.sub(f"(.+?{magic1}(.|\n)+?{magic2})", indented_block, text)
+            
+
+for i in glob.glob("**/*.html", root_dir=".", recursive=True):
+    new = ""
+    
+    with open(i, "r") as file:
+        new = file.read()
+        print(f"Applying navbar to {i}")
+        new = block_sub(new, "<!--NAVBAR START-->", "<!--NAVBAR END-->", NAVPANE)
+        print(f"Applying footer to {i}")
+        new = block_sub(new, "<!--FOOTER START-->", "<!--FOOTER END-->", FOOTER)
     
     with open(i, "w") as file:
         file.write(new)
