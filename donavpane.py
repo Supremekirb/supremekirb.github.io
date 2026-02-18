@@ -39,7 +39,7 @@ NAVPANE = """\
 """
 
 FOOTER = """\
-<img src="images/gayass-derg/laptop.png" style="max-width: 100%;">
+<img src="/images/gayass-derg/laptop.png" style="max-width: 100%;">
 """
 
 def block_sub(text, magic1, magic2, block):
@@ -48,7 +48,6 @@ def block_sub(text, magic1, magic2, block):
     for i in text.split("\n"):
         if i.strip().startswith(magic1):
             indent = i.split(magic1)[0]
-            print(f"Indent is '{indent}'")
             break
     indented_block = indent + magic1 + "\n" + str().join((indent + l) for l in block.splitlines(keepends=True)) + indent + magic2
         
