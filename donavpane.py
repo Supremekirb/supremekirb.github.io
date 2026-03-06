@@ -34,6 +34,10 @@ NAVPANE = """\
         <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
         </a>
         
+        <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
+        <img width="88" height="31" src="/images/88x31s/pkhack.gif" alt="PK Hack button">
+        </a>
+        
     </fieldset>
 </div>
 """
