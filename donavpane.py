@@ -11,10 +11,11 @@ NAVPANE = """\
         </h3>
         <ul>
             <li><a href="/index.html">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li><a href="/projects.html">My stuff</a></li>
             <li><a href="/bit.html">My sona</a></li>
-            <li><a href="/earthbound/dump.html">PK Hack dump</a></li>
-            <li><a href="/tools/tools_home.html">Tools</a></li>
+            <li><a href="/earthbound">PK Hack dump</a></li>
+            <li><a href="/tools">Tools</a></li>
         </ul>
 
         <h3 class="ruletitle">
@@ -43,7 +44,7 @@ NAVPANE = """\
 """
 
 FOOTER = """\
-<img src="/images/gayass-derg/laptop.png" style="max-width: 100%;">
+<img src="/images/gayass-derg/laptop.png" style="display: block; width: 100%; max-width: 700px; margin: auto;">
 """
 
 def block_sub(text, magic1, magic2, block):

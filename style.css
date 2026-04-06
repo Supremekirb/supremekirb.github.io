@@ -31,6 +31,10 @@ body {
     background-attachment: fixed;
 }
 
+p {
+    line-height: 1.4rem;
+}
+
 @keyframes gradient {
     100% {
         background-position: 400px 400px;
@@ -328,8 +332,18 @@ img {
 
 #sidebar {
     flex: 15%;
-    display: flex;
-    flex-grow: 1;
+    /* display: flex; */
+    /* flex-grow: 0; */
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+/* not sticky on mobile devices */
+@media(max-width: 991px) {
+    #sidebar {
+        position: unset;
+    }
 }
 
 /* make it hidden on mobile devices */
@@ -405,5 +419,18 @@ a.t88x31 img {
 @media(min-width: 991px) {
     .content-mobile {
         display: none;
+    }
+}
+
+.text-article {
+    padding-left: 15%;
+    padding-right: 15%;
+    text-wrap: pretty;
+}
+/* Don't include the article column padding for mobile screens */
+@media(max-width: 991px) {
+    .text-article {
+        padding-left: unset;
+        padding-right: unset
     }
 }

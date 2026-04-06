@@ -40,10 +40,11 @@
                     </h3>
                     <ul>
                         <li><a href="/index.html">Home</a></li>
+                        <li><a href="/blog">Blog</a></li>
                         <li><a href="/projects.html">My stuff</a></li>
                         <li><a href="/bit.html">My sona</a></li>
-                        <li><a href="/earthbound/dump.html">PK Hack dump</a></li>
-                        <li><a href="/tools/tools_home.html">Tools</a></li>
+                        <li><a href="/earthbound">PK Hack dump</a></li>
+                        <li><a href="/tools">Tools</a></li>
                     </ul>
             
                     <h3 class="ruletitle">
@@ -75,7 +76,7 @@
                 <fieldset class="lilbox hgrow">
                     <legend>ROM Inspector</legend>
                     
-                    <a href="tools_home.html">< Back to Tools</a>
+                    <a href="/tools">< Back to Tools</a>
 
                     <noscript>
                         <h2 style="text-align: center">This tool requires JavaScript in order to function. Please enable JavaScript.</h1>
@@ -121,43 +122,45 @@
                 </fieldset>
                 <fieldset class="lilbox hgrow">
                     <legend>Information about ROMs</legend>
-                    <p>
-                        While most EB ROMs floating around are already clean, some will have minor differences (that don't impact the game at all, just the file).
-                        Additionally, several legacy hacking tools will expand the ROM in a strange way or expect a copier header.
-                        Modern hacking tools usually expect a 24 megabit headerless ROM.
-                    </p>
-                    <p>
-                        The copier header is a 512-byte block preceding the ROM data that used to be added by devices that dumped SNES cartridges,
-                        such as the Super Magicom. It's normally used to store information about the copier device, but when artifically adding a header,
-                        it's common to just fill it with zeroes. Emulators are smart enough to recognise when a copier header is present,
-                        but tools that edit the ROM expect things to be in very specific locations. Also, so do patches. So a clean ROM is vital for hacking.
-                    </p>
-                    <p>
-                        The ROM can also be expanded to 32 megabits or 48 megabits by hacking tools in order to fit more stuff.
-                        CoilSnake does this the proper way, copying data for ExHiROM correctly and filling blank space with zeroes.
-                        JHack (aka PK Hack) does it a weird way, filling a portion of the blank space with a repeating pattern of zeroes and twos.
-                    </p>
-                    <!--Gets unhidden on page load. It's populated with the tool's internal info.-->
-                    <div id="eb-known-rom-info" style="display:none">
+                    <div class="text-article">
                         <p>
-                            Here's a table of the ROMs that this tool recognises and their information. The 24-megabit headerless ROM is the clean one.
+                            While most EB ROMs floating around are already clean, some will have minor differences (that don't impact the game at all, just the file).
+                            Additionally, several legacy hacking tools will expand the ROM in a strange way or expect a copier header.
+                            Modern hacking tools usually expect a 24 megabit headerless ROM.
                         </p>
-                        <table id="eb-known-rom-table">
-                            <tr>
-                                <th>ROM type</th>
-                                <th>Size</th>
-                                <th>CRC32 hash</th>
-                            </tr>
-                        </table>
                         <p>
-                            If you have a valid EB ROM that isn't in this table, contact me so I can investigate and add it to this tool.
+                            The copier header is a 512-byte block preceding the ROM data that used to be added by devices that dumped SNES cartridges,
+                            such as the Super Magicom. It's normally used to store information about the copier device, but when artifically adding a header,
+                            it's common to just fill it with zeroes. Emulators are smart enough to recognise when a copier header is present,
+                            but tools that edit the ROM expect things to be in very specific locations. Also, so do patches. So a clean ROM is vital for hacking.
                         </p>
+                        <p>
+                            The ROM can also be expanded to 32 megabits or 48 megabits by hacking tools in order to fit more stuff.
+                            CoilSnake does this the proper way, copying data for ExHiROM correctly and filling blank space with zeroes.
+                            JHack (aka PK Hack) does it a weird way, filling a portion of the blank space with a repeating pattern of zeroes and twos.
+                        </p>
+                        <!--Gets unhidden on page load. It's populated with the tool's internal info.-->
+                        <div id="eb-known-rom-info" style="display:none">
+                            <p>
+                                Here's a table of the ROMs that this tool recognises and their information. The 24-megabit headerless ROM is the clean one.
+                            </p>
+                            <table id="eb-known-rom-table">
+                                <tr>
+                                    <th>ROM type</th>
+                                    <th>Size</th>
+                                    <th>CRC32 hash</th>
+                                </tr>
+                            </table>
+                            <p style="text-align: center;">
+                                If you have a valid EB ROM that isn't in this table, contact me so I can investigate and add it to this tool.
+                            </p>
+                        </div>
                     </div>
                 </fieldset>
             </div>
         </div>
         <!--FOOTER START-->
-        <img src="/images/gayass-derg/laptop.png" style="max-width: 100%;">
+        <img src="/images/gayass-derg/laptop.png" style="display: block; width: 100%; max-width: 700px; margin: auto;">
         <!--FOOTER END-->
     </div>
 </body>
