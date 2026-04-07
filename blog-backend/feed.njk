@@ -1,0 +1,41 @@
+---json
+{
+  "permalink": "/feed.xml",
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "title": "Kirb's Blog",
+    "description": "Blog from supremekirb.neocities.org/blog/",
+    "language": "en",
+    "base": "https://supremekirb.neocities.org/blog",
+    "author": {
+      "name": "SupremeKirb"
+    }
+  }
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="/styles.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
+  <title>{{ metadata.title }}</title>
+  <subtitle>{{ metadata.description }}</subtitle>
+  <link href="{{ metadata.base | concat(permalink) }}" rel="self" />
+  <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
+  <updated>{{ collections.all | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+  </author>
+  <generator>{{ eleventy.generator }}</generator>
+  <icon>https://supremekirb.neocities.org/favicon/favicon-96x96.png</icon>
+  <logo>https://supremekirb.neocities.org/favicon/favicon-96x96.png</logo>
+  {%- for post in collections.all | reverse %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ metadata.base | concat(post.url) }}" />
+    <summary>{{ post.data.description }}</summary>
+    <published>{{ post.date | dateToRfc3339 }}</published>
+    <id>{{ metadata.base | concat(post.url) }}</id>
+    <content type="html"><![CDATA[{{ post.content | renderTransforms(post.data.page, metadata.base) | safe }}]]></content>
+  </entry>
+  {%- endfor %}
+</feed>

@@ -73,6 +73,13 @@ eleventyExcludeFromCollections: true
             <!--NAVBAR END-->
 
             <div id="contentmain">
+                <fieldset class="lilbox hgrow">
+                    <legend>Welcome to the blog</legend>
+                    <p>Here is where I will post very infrequent ramblings.</p>
+                    <div class="project-links">
+                        <a class="boxbutton" href="/blog/feed.xml"><img class="icon" src="https://cdn.simpleicons.org/rss/white?viewbox=auto" /> Feed (of) the dragon</a>
+                    </div>
+                </fieldset>
                 {%- for post in collections.all | reverse %}
                 <fieldset class="lilbox hgrow">
                     <legend>{% prettyDate %}</legend>
