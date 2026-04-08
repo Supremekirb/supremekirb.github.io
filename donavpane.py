@@ -19,7 +19,7 @@ NAVPANE = """\
         </ul>
 
         <h3 class="ruletitle">
-            <div class="ruletitletext">Cool people</div>
+            <div class="ruletitletext">Cool links</div>
             <div class="ruletitleline"></div>
         </h3>
         
@@ -33,6 +33,10 @@ NAVPANE = """\
 
         <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
         <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
+        </a>
+        
+        <a class="t88x31" title="chai!" href="https://axoga.to" target="_blank">
+        <img width="88" height"31" src="https://axoga.to/images/stamps/chai.png" alt="chai button">
         </a>
         
         <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
