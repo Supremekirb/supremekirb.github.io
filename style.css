@@ -233,6 +233,10 @@ button:hover {
     background-color: var(--ebpurple);
 }
 
+input[type="number"] {
+    font-family: monospace;
+}
+
 input[type="file"] {
     display: none;
 }

@@ -7,7 +7,9 @@
     <title>Kirb's corner</title>
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
     <script src="/src/script.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/src/regular/style.css" />
+    <script src="/src/tempo_calculator.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/src/regular/style.css" />
 
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
@@ -20,9 +22,7 @@
 <body>
     <div id="main">
         <fieldset class="bigbox">
-            <h1 id="quote">•Online tools</h1>
-            <img src="/images/gayass-derg/tools.png" class="content-desktop" style="position: absolute; right:10%; top:0%; height: 182px;">
-            <i class="content-desktop" style="color:var(--ebgrey)">Art by Mae</i>
+            <h1 id="quote">•EBMusEd Tempo Calculator</h1>
         </fieldset>
 
         <br>
@@ -72,12 +72,37 @@
 
             <div id="contentmain">
                 <fieldset class="lilbox hgrow">
-                    <legend>Tool list</legend>
-                    <p>Please note that all of these tools run locally in your browser. No data is sent back to the web server.</p>
-                    <ul>
-                        <li><a href="rom_inspector.html">EarthBound ROM Inspector</a></li>
-                        <li><a href="tempo_calculator.html">EBMusEd Tempo Calculator</a></li>
-                    </ul>
+                    <legend>Tempo Calculator</legend>
+                    <a href="/tools">
+                        < Back to Tools</a>
+
+                            <noscript>
+                                <h2 style="text-align: center">This tool requires JavaScript in order to function.
+                                    Please enable JavaScript.</h2>
+                            </noscript>
+                            <p>
+                                This tool converts between beats-per-minute (BPM) and N-SPC tempo values (that you input
+                                in EBMusEd).<br>
+                                The formula for BPM → N-SPC is <code>12288 / (60000 / bpm)</code>.<br>
+                                The formula for N-SPC → BPM is <code>60000 / (12288 / nspc)</code>.<br>
+                                As you change the input in one box, the other will update. <b>All input values are in decimal.</b>
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap">
+                                <fieldset class="lilbox">
+                                    <h3>BPM tempo</h3>
+                                    <input type="number" id="bpm-value" value="100" placeholder="BPM tempo value (decimal)">
+                                    <br><br>
+                                    <div>Integer: <code id="bpm-out-int">100</code></div>
+                                </fieldset>
+                                <fieldset class="lilbox">
+                                    <h3>N-SPC tempo</h3>
+                                    <input type="number" id="nspc-value" value="20.48" placeholder="N-SPC tempo value (decimal)">
+                                    <br><br>
+                                    <div>Integer: <code id="nspc-out-int">20</code></div>
+                                    <div>Hexadecimal: <code id="nspc-out-hex">0x14</code></div>
+                                    <div>Tempo instruction: <code id="nspc-out-opc">[E7 14]</code></div>
+                                </fieldset>
+                            </div>
                 </fieldset>
             </div>
         </div>
