@@ -25,23 +25,36 @@ body {
     color-scheme: dark;
     color: white;
     margin: 0;
-    height: 100%;
     font-family: Motherish;
+}
+
+html {
+    height: 100%;
     background: linear-gradient(-45deg, var(--bg1), var(--bg1) 25%, var(--bg2) 25%, var(--bg2) 50%, var(--bg1) 50%, var(--bg1) 75%, var(--bg2) 75%, var(--bg2) 100%, var(--bg1) 100%);
     background-size: 400px 400px;
-    animation: gradient 30s linear reverse infinite;
+    animation: blitz-gradient 30s linear reverse infinite;
     background-attachment: fixed;
 }
+
+body {
+    background: 
+        linear-gradient(to top right, rgba(149, 0, 255, 0.113) 0%, rgba(0, 0, 0, 0) 80%),
+        linear-gradient(to bottom left, rgba(255, 102, 0, 0.113) 0%, rgba(0, 0, 0, 0) 80%);
+    background-attachment: fixed;
+    min-height: 100%;
+}
+
+@keyframes blitz-gradient { /* 10 points to you if you can guess why it's called that */
+    100% {
+        background-position: 400px 400px;
+    }
+}
+
 
 p {
     line-height: 1.4rem;
 }
 
-@keyframes gradient {
-    100% {
-        background-position: 400px 400px;
-    }
-}
 
 #main {
     width: 80%;
