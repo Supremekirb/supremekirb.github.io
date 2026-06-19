@@ -85,7 +85,7 @@ const EB_KNOWN_ROMS = new Map([
     [0x8fdb034f, {
         "name": "Wii U Virtual Console (NTSC)",
         "size": EB_BASE_SIZE,
-        "fix": function (array) { return EBROM_fix_ips(array, "WiiU-NTSC-to-clean.ips") }
+        "fix": function (array) { return EBROM_fix_ips(array, "WiiU-NTSC-to-clean-ips.txt") }
     }]
 ])
 
