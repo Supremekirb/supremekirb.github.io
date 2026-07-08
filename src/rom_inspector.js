@@ -83,9 +83,9 @@ const EB_KNOWN_ROMS = new Map([
         "fix": EBROM_fix_headered
     }],
     [0x8fdb034f, {
-        "name": "Wii U & New 3DS Virtual Console",
+        "name": "Virtual Console & SNES Mini",
         "size": EB_BASE_SIZE,
-        "fix": function (array) { return EBROM_fix_ips(array, "WiiU-3DS-VC-to-clean.ips.txt") }
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-to-clean.ips.txt") }
     }]
 ])
 
