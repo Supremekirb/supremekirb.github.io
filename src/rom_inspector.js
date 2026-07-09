@@ -83,10 +83,20 @@ const EB_KNOWN_ROMS = new Map([
         "fix": EBROM_fix_headered
     }],
     [0x8fdb034f, {
-        "name": "Virtual Console & SNES Mini",
+        "name": "Virtual Console & SNES Classic<br>(Broken audio)",
         "size": EB_BASE_SIZE,
-        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-to-clean.ips.txt") }
-    }]
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-to-clean.ips.txt") }
+    }],
+    [0x20e24963, {
+        "name": "Virtual Console & SNES Classic<br>(Runtime-patched)",
+        "size": EB_BASE_SIZE,
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-runtime-to-clean.ips.txt") }
+    }],
+    [0x73a2fe7d, {
+        "name": "Virtual Console & SNES Classic<br>(Broken audio, runtime-patched)",
+        "size": EB_BASE_SIZE,
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-runtime-to-clean.ips.txt") }
+    }],
 ])
 
 // from stackoverflow but modified to work with a uint8array

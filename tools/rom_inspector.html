@@ -145,13 +145,20 @@
                         </p>
                         <p>
                             The Wii U Virtual Console, New 3DS Virtual Console, and Super NES Classic Edition (aka Mini) releases of the game, as with most games on these platforms,
-                            reorganise sample data internally, potentially among other things. This tool supports the ROM you get after using AwakeEchidna's
+                            reorganise sample data internally; otherwise they are identical to vanilla EarthBound ROMs. This tool supports the ROM you get after using AwakeEchidna's
                             <a href="https://github.com/AwakeEchidna/wiiu-vc-extractor">Wii U Virtual Console Extractor</a> tool to convert the <code>.sfrom</code> file
-                            for any of these releases. I will be working on checking if there are any differences beyond just this reorganisation.
-
-                            As for the Nintendo Classics (formerly Nintendo Switch Online) release, apparently the ROM is internally kept unmodified,
-                            and some patches are applied at runtime to tone down visual effects like PK Flash Ω. Therefore, dumping this version will get you an already-clean ROM. 
-                            I will also be trying to investigate the nature of these patches.
+                            or using <a href="https://wiki.hacks.guide/wiki/Special:DownloadWithFilename/File:snesvcsplit.txt/snesvcsplit.py">snesvcsplit</a> and
+                            <a href="https://github.com/Plombo/vcromclaim">vcromclaim</a> in the case of New 3DS Virtual Console. Both of these rely on the same code to restore
+                            the reorganised sample data, which currently has <a href="https://github.com/AwakeEchidna/wiiu-vc-extractor/issues/68">a bug</a>
+                            which causes the sample data to be restored incorrectly. This tool can fix that for you.
+                        </p>
+                        <p>
+                            As for the Nintendo Classics (aka Nintendo Switch Online) version, no such audio data reorganisation happens, so dumping this will get you a clean EarthBound copy.
+                        </p>
+                        <p>
+                            All of these official re-releases also include some minor patches that tone down visual effects. For details, see <a href="https://tcrf.net/EarthBound">TCRF</a>.
+                            These patches are programmed directly into Nintendo's emulators to be applied at runtime, so dumping the ROM from the filesystem will not include these changes.
+                            However, this tool will still be able to fix ROMs that have been dumped directly from RAM such that they include the runtime patches.
                         </p>
                         <!--Gets unhidden on page load. It's populated with the tool's internal info.-->
                         <div id="eb-known-rom-info" style="display:none">
