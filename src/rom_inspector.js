@@ -85,17 +85,17 @@ const EB_KNOWN_ROMS = new Map([
     [0x8fdb034f, {
         "name": "Virtual Console & SNES Classic<br>(Broken audio)",
         "size": EB_BASE_SIZE,
-        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-to-clean.ips.txt") }
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-to-clean.ips") }
     }],
     [0x20e24963, {
         "name": "Virtual Console & SNES Classic<br>(Runtime-patched)",
         "size": EB_BASE_SIZE,
-        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-runtime-to-clean.ips.txt") }
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-runtime-to-clean.ips") }
     }],
     [0x73a2fe7d, {
         "name": "Virtual Console & SNES Classic<br>(Broken audio, runtime-patched)",
         "size": EB_BASE_SIZE,
-        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-runtime-to-clean.ips.txt") }
+        "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-runtime-to-clean.ips") }
     }],
 ])
 
