@@ -14,13 +14,13 @@ const EB_KNOWN_ROMS = new Map([
     }],
     [0xfb72d282, {
         "name": "24Mbit with clean header",
-        "size": 0x300000 + 512,
-        "fix": EBROM_fix_headered
+        "size": EB_BASE_SIZE + 512,
+        "fix": EBROM_remove_header
     }],
     [0xaf607132, {
         "name": "24Mbit with dirty header",
-        "size": 0x300000 + 512,
-        "fix": EBROM_fix_headered
+        "size": EB_BASE_SIZE + 512,
+        "fix": EBROM_remove_header
     }],
     [0x971d7fc7, {
         "name": "32Mbit headerless",
@@ -97,6 +97,26 @@ const EB_KNOWN_ROMS = new Map([
         "size": EB_BASE_SIZE,
         "fix": function (array) { return EBROM_fix_ips(array, "VC-and-mini-broken-audio-runtime-to-clean.ips") }
     }],
+    [0xbfd1d352, {
+        "name": "Switch runtime-patched<br>(With corrupt byte)",
+        "size": EB_BASE_SIZE,
+        "fix": function (array) { return EBROM_fix_ips(array, "NSO-runtime-bad-byte-to-clean.ips") }
+    }],
+    [0xde6f0f52, {
+        "name": "Switch runtime-patched",
+        "size": EB_BASE_SIZE,
+        "fix": function (array) { return EBROM_fix_ips(array, "NSO-runtime-to-clean.ips") }
+    }],
+    [0x44953c1a, {
+        "name": "1996 antipiracy bypass headerless",
+        "size": EB_BASE_SIZE,
+        "fix": function (array) { return EBROM_fix_ips(array, "antipiracy-bypass-to-clean.ips") }
+    }],
+    [0x9ca71c67, {
+        "name": "1996 antipiracy bypass with header",
+        "size": EB_BASE_SIZE + 512,
+        "fix": function (array) { return EBROM_fix_ips(EBROM_remove_header(array), "antipiracy-bypass-to-clean.ips")}
+    }]
 ])
 
 // from stackoverflow but modified to work with a uint8array
@@ -226,9 +246,15 @@ async function fixROM(array) {
 // Also calls the unheadered fix afterwards
 function EBROM_fix_headered(array) {
     console.log("Removing header...")
+    return EBROM_fix_unheadered(EBROM_remove_header(array))
+}
+
+// Just remove the header, don't perform any other fixing
+function EBROM_remove_header(array) {
+    console.log("Removing header...")
     let cleaned = new Uint8Array(array.length - 512)
     cleaned.set(array.slice(512))
-    return EBROM_fix_unheadered(cleaned)
+    return cleaned
 }
 
 // Fix ROMs by reducing their size to the base 24Mb size
