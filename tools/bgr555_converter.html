@@ -7,7 +7,9 @@
     <title>Kirb's corner</title>
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
     <script src="/src/script.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/src/regular/style.css" />
+    <script src="/src/bgr555_converter.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/src/regular/style.css" />
 
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
@@ -20,9 +22,7 @@
 <body>
     <div id="main">
         <fieldset class="bigbox">
-            <h1 id="quote">•Online tools</h1>
-            <img src="/images/gayass-derg/tools.png" class="content-desktop" style="position: absolute; right:10%; top:0%; height: 182px;">
-            <i class="content-desktop" style="color:var(--ebgrey)">Art by Mae</i>
+            <h1 id="quote">•BGR555 Colour Converter</h1>
         </fieldset>
 
         <br>
@@ -76,13 +76,32 @@
 
             <div id="contentmain">
                 <fieldset class="lilbox hgrow">
-                    <legend>Tool list</legend>
-                    <p>Please note that all of these tools run locally in your browser. No data is sent back to the web server.</p>
-                    <ul>
-                        <li><a href="rom_inspector.html">EarthBound ROM Inspector</a></li>
-                        <li><a href="tempo_calculator.html">EBMusEd Tempo Calculator</a></li>
-                        <li><a href="bgr555_converter.html">BGR555 Colour Converter</a></li>
-                    </ul>
+                    <legend>BGR555 Converter</legend>
+                    <a href="/tools">&lt; Back to Tools</a>
+
+                            <noscript>
+                                <h2 style="text-align: center">This tool requires JavaScript in order to function.
+                                    Please enable JavaScript.</h2>
+                            </noscript>
+                            <p>
+                                This tool converts between everyday colour formats and the Super NES's BGR555 format.
+                                Where the modern RGB format gives every colour channel an 8-bit range of 0-255,
+                                the BGR555 format only has 5 bits per colour giving a range of 0-31.
+                                This is so it can fit in the SNES's word length of 16 bits.
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <fieldset class="lilbox">
+                                    <h3>Normal colour format</h3>
+                                    <input type="color" id="normal" value="#000000">
+                                    <input type="text" id="htmlcode" value="#000000" placeholder="Hex code">
+                                </fieldset>
+                                <fieldset class="lilbox">
+                                    <h3>BGR555 colour format</h3>
+                                    <input type="text" id="bgr555" value="0x0000" placeholder="BGR555 value (hex)">
+                                    <br>
+                                    <label style="user-select: none;"><input type="checkbox" id="extra-bit">Set <abbr title="Since each channel only takes 5 bits, the 16th bit ignored by the hardware. Software might encode something in it.">unused 16th bit</abbr></label>
+                                </fieldset>
+                            </div>
                 </fieldset>
             </div>
         </div>
