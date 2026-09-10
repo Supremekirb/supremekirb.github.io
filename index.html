@@ -18,14 +18,56 @@
 </head>
 
 <body>
-    <div id="main">
-        <fieldset class="bigbox">
-            <h1 id="randomQuote">•After all, it could only cost you your life, and you got that for free!</h1>
-            <i style="color:var(--ebgrey)">(Refresh for a new quote)</i>
-        </fieldset>
-
-        <br>
-
+    <div id="main" style="position: relative; z-index: 0;">
+        <div style="display: flex;">
+            <div>
+                <h3>bitdragon.dev</h3>
+                <div style="font-size: 6vw">SupremeKirb</div>
+                <p>
+                    they/them • UTC+09:30/10:30
+                    <br>
+                    Hi hi! You can call me Kirb or Bit.
+                    <br>
+                    Professional unprofessional programmer, occasional artist, creature lover, and ROM hacker.
+                    <br>
+                    I like messing around with old software and hardware and making interesting things!
+                    <br>
+                </p>
+                <div class="project-links">
+                    <a class="boxbutton" href="https://forum.starmen.net/members/SupremeKirbo"><img class="icon" src="images/icons/starmen.png" /> Starmen.net</a>
+                    <a class="boxbutton" href="https://github.com/supremekirb/"><img class="icon" src="https://cdn.simpleicons.org/github/white?viewbox=auto" /> GitHub</a>
+                    <a class="boxbutton" href="https://youtube.com/@supremekirb"><img class="icon" src="https://cdn.simpleicons.org/youtube/white?viewbox=auto" /> Youtube</a>
+                    <a class="boxbutton" href="https://www.tumblr.com/blog/supremekirb"><img class="icon" src="https://cdn.simpleicons.org/tumblr/white?viewbox=auto" /> Tumblr</a>
+                    <a class="boxbutton" href="https://bsky.app/profile/bitdragon.dev"><img class="icon" src="https://cdn.simpleicons.org/bluesky/white?viewbox=auto" /> Bluesky</a>
+                </div>
+                <p>
+                    Also on Discord <code>@supremekirbnouveau</code> and Fluxer <code>SupremeKirb#2761</code>
+                </p>
+            </div>
+        </div>
+        <div style="position: relative;">
+            <div class="content-desktop">
+                <img src="/images/gayass-derg/homepage_bg_below.png" style="position: absolute; z-index: -1; width: 40vw; right: -7vw; top: -24vw; user-select: none; pointer-events: none;">
+                <img src="/images/gayass-derg/homepage_bg_above.png" style="position: absolute; z-index:  1; width: 40vw; right: -7vw; top: -24vw; user-select: none; pointer-events: none;">
+            </div>
+            <fieldset class="lilbox hgrow">
+                <legend>Quick navigation</legend>
+                <div class="gallery">
+                    <a class="hover-image" href="/projects.html">
+                        <img class="gallery-image" src="/images/gayass-derg/homepage_stuff.png">
+                        <img class="gallery-image" src="/images/gayass-derg/homepage_stuff_hover.png">
+                    </a>
+                    <a class="hover-image" href="/tools">
+                        <img class="gallery-image" src="/images/gayass-derg/homepage_tools.png">
+                        <img class="gallery-image" src="/images/gayass-derg/homepage_tools_hover.png">
+                    </a>
+                    <a class="hover-image" href="/blog">
+                        <img class="gallery-image" src="/images/gayass-derg/homepage_blog.png">
+                        <img class="gallery-image" src="/images/gayass-derg/homepage_blog_hover.png">
+                    </a>
+                </div>
+            </fieldset>
+        </div>
         <div id="contentblock">
             <!--NAVBAR START-->
             <div id="sidebar">
@@ -43,67 +85,64 @@
                         <li><a href="/earthbound">PK Hack dump</a></li>
                         <li><a href="/tools">Tools</a></li>
                     </ul>
-
+            
                     <h3 class="ruletitle">
                         <div class="ruletitletext">Cool links</div>
                         <div class="ruletitleline"></div>
                     </h3>
-
-                    <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
-                        <img width="88" height="31" src="https://chromonym.pages.gay/buttons/cyan.png" alt="cyan.pet button"/>
-                    </a>
-
-                    <a class="t88x31" title="gabbi!" href="https://ebbr.neocities.org" target="_blank">
-                        <img src="/images/88x31s/ebbr.png" alt="ebbr button">
-                    </a>
-
-                    <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
-                    <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
-                    </a>
-
-                    <a class="t88x31" title="chai!" href="https://axoga.to" target="_blank">
-                    <img width="88" height"31" src="https://axoga.to/images/stamps/chai.png" alt="chai button">
-                    </a>
-
-                    <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
-                    <img width="88" height="31" src="/images/88x31s/pkhack.gif" alt="PK Hack button">
-                    </a>
-
+            
+                    <div class="t88x31-box-sidebar">
+                        <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
+                            <img width="88" height="31" src="https://chromonym.pages.gay/buttons/cyan.png" alt="cyan.pet button"/>
+                        </a>
+                        <a class="t88x31" title="gabbi!" href="https://ebbr.neocities.org" target="_blank">
+                            <img src="/images/88x31s/ebbr.png" alt="ebbr button">
+                        </a>
+                        <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
+                            <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
+                        </a>
+                        <a class="t88x31" title="chai!" href="https://axoga.to" target="_blank">
+                            <img width="88" height"31" src="https://axoga.to/images/stamps/chai.png" alt="chai button">
+                        </a>
+                        <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
+                            <img width="88" height="31" src="/images/88x31s/pkhack.gif" alt="PK Hack button">
+                        </a>
+                    </div>
                 </fieldset>
             </div>
             <!--NAVBAR END-->
 
             <div id="contentmain">
                 <fieldset class="lilbox hgrow">
-                    <legend>Hello!</legend>
-                    <div class="content-mobile">
-                        <fieldset class="imgbox" style="border-radius: 100%; width:50%">
-                            <img src="images/gayass-derg/circle.png" style="width:100%">
-                        </fieldset>
+                    <legend>88x31</legend>
+                    <p>Please feel free to add this to your page! :3</p>
+                    <div style="text-align: center;">
+                    <a class="t88x31" title="Click to copy me!" id="bitbutton-copyer">
+                        <img width="88" height="31" src="/images/gayass-derg/88x31.png" alt="Bit button">
+                    </a>
                     </div>
-                    <div style="display:flex; gap:5%; padding:1%">
-                        <div style="flex: 70%">
-                            <h2>SupremeKirb</h2>
-                            <p style="color: var(--ebgrey)">they/them • UTC+09:30/10:30</p>
-                            <p>
-                                Queer dork on the internet who is far too obsessed with dragons and EarthBound. Professional at being unprofessional at programming. Lover of all kinds of shapely creatures.
-                                <br><br> That purple dragon <span class="content-desktop">on the right</span><span class="content-mobile">up above</span> is my sona, Bit. Art is by the talented @pkmnsilvy.
-                                <br><br> You can find me on Discord as @supremekirbnouveau, or in at few other places using these fancy buttons below.
-                            </p>
-                            <div class="project-links">
-                                <a class="boxbutton" href="https://forum.starmen.net/members/SupremeKirbo"><img class="icon" src="images/icons/starmen.png" /> Starmen.net</a>
-                                <a class="boxbutton" href="https://github.com/supremekirb/"><img class="icon" src="https://cdn.simpleicons.org/github/white?viewbox=auto" /> GitHub</a>
-                                <a class="boxbutton" href="https://youtube.com/@supremekirb"><img class="icon" src="https://cdn.simpleicons.org/youtube/white?viewbox=auto" /> Youtube</a>
-                                <a class="boxbutton" href="https://www.tumblr.com/blog/supremekirb"><img class="icon" src="https://cdn.simpleicons.org/tumblr/white?viewbox=auto" /> Tumblr</a>
-                                <a class="boxbutton" href="https://bsky.app/profile/bitdragon.dev"><img class="icon" src="https://cdn.simpleicons.org/bluesky/white?viewbox=auto" /> Bluesky</a>
-                            </div>
-                        </div>
-                        <div class="content-desktop" style="flex: 30%">
-                            <fieldset class="imgbox" style="border-radius: 100%;">
-                                <img src="images/gayass-derg/circle.png" style="width:100%">
-                            </fieldset>
-                        </div>
-                    </div>
+                    <br>
+                    <div id="copy-response" style="text-align: center;">Click to copy it!<noscript> (JS only)</noscript></div>
+                    <noscript>
+                        But since you have JS off, use this:
+                        <textarea readonly="true" style="resize: vertical">
+&lt;a title="Bit!" href="https://bitdragon.dev" target="_blank"&gt;
+&lt;img width="88" height="31" src="https://bitdragon.dev/images/gayass-derg/88x31.png" alt="Bit button"&gt;
+&lt;/a&gt;</textarea>
+                    </noscript>
+                </fieldset>
+                <fieldset class="lilbox hgrow">
+                    <legend>News</legend>
+                    <h3 class="ruletitle">
+                        <div class="ruletitletext">New design!</div>
+                        <div class="ruletitleline"></div>
+                    </h3>
+                    <p>The main page has had a little redesign. I hope you like it :3</p>
+                    <h3 class="ruletitle">
+                        <div class="ruletitletext">BGR555 colour converter</div>
+                        <div class="ruletitleline"></div>
+                    </h3>
+                    <p>Added a new tool: <a href=tools/bgr555_converter.html>BGR555 colour converter</a>. This is for converting colours between modern formats and the Super NES hardware format.</p>
                 </fieldset>
             </div>
         </div>

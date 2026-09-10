@@ -22,6 +22,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     )
   })
+  
+  // Copy button
+  
+  const copybutton_text = `\
+<a title="Bit!" href="https://bitdragon.dev" target="_blank">
+  <img width="88" height="31" src="https://bitdragon.dev/images/gayass-derg/88x31.png" alt="Bit button">
+</a>`
+  document.getElementById("bitbutton-copyer").addEventListener("click", (event) => {
+    navigator.clipboard.writeText(copybutton_text)
+    let copyresponse = document.getElementById("copy-response")
+    copyresponse.innerText = "Copied!"
+    if (copyresponse.style.animationName === "anim-burst-alt") {
+      copyresponse.style.animation = "anim-burst 0.1s linear"
+    } else {
+      copyresponse.style.animation = "anim-burst-alt 0.1s linear"
+    }
+    
+  })
 
 }, false);
 

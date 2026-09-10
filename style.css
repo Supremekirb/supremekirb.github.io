@@ -26,6 +26,7 @@ body {
     color: white;
     margin: 0;
     font-family: Motherish;
+    font-size: 110%;
 }
 
 html {
@@ -310,6 +311,8 @@ img {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
 }
 
 .ruletitletext {
@@ -326,7 +329,7 @@ img {
 #contentblock {
     display: flex;
     gap: 5%;
-    padding: 1%
+    /* padding: 1%*/
 }
 
 @media(max-width: 991px) {
@@ -382,6 +385,7 @@ a.t88x31:hover,
 a.t88x31:active {
     text-decoration: none;
     background-color: inherit;
+    cursor: pointer;
 }
 
 a.t88x31 img {
@@ -392,6 +396,17 @@ a.t88x31 img {
     image-rendering: pixelated;
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
+    transition: transform 0.06s;
+    width: 176px;
+    height: 62px;
+}
+
+a.t88x31 img:active {
+    transform: scale(0.9, 0.9);
+}
+
+.t88x31-box-sidebar {
+    text-align: center;
 }
 
 .project-entry {
@@ -506,4 +521,35 @@ a.t88x31 img {
 
 .gallery-item:hover .gallery-hover {
     visibility: visible;
+}
+
+.hover-image {
+    text-decoration: none;
+}
+
+.hover-image:hover {
+    background-color: unset;
+}
+
+.hover-image img:last-child {
+    display: none;
+}
+
+.hover-image:hover img:first-child {
+    display: none;
+}
+
+.hover-image:hover img:last-child {
+    display: block;
+}
+
+/* triggered through JS */
+@keyframes anim-burst { 
+    0% { transform: scale(1.5, 1.5); };
+    100% { transform: scale(1, 1); };
+}
+/* for repeating the anim */
+@keyframes anim-burst-alt { 
+    0% { transform: scale(1.5, 1.5); };
+    100% { transform: scale(1, 1); };
 }

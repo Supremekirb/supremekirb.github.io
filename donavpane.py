@@ -22,27 +22,24 @@ NAVPANE = """\
             <div class="ruletitletext">Cool links</div>
             <div class="ruletitleline"></div>
         </h3>
-        
-        <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
-            <img width="88" height="31" src="https://chromonym.pages.gay/buttons/cyan.png" alt="cyan.pet button"/>
-        </a>
-        
-        <a class="t88x31" title="gabbi!" href="https://ebbr.neocities.org" target="_blank">
-            <img src="/images/88x31s/ebbr.png" alt="ebbr button">
-        </a>
 
-        <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
-        <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
-        </a>
-        
-        <a class="t88x31" title="chai!" href="https://axoga.to" target="_blank">
-        <img width="88" height"31" src="https://axoga.to/images/stamps/chai.png" alt="chai button">
-        </a>
-        
-        <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
-        <img width="88" height="31" src="/images/88x31s/pkhack.gif" alt="PK Hack button">
-        </a>
-        
+        <div class="t88x31-box-sidebar">
+            <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
+                <img width="88" height="31" src="https://chromonym.pages.gay/buttons/cyan.png" alt="cyan.pet button"/>
+            </a>
+            <a class="t88x31" title="gabbi!" href="https://ebbr.neocities.org" target="_blank">
+                <img src="/images/88x31s/ebbr.png" alt="ebbr button">
+            </a>
+            <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
+                <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
+            </a>
+            <a class="t88x31" title="chai!" href="https://axoga.to" target="_blank">
+                <img width="88" height"31" src="https://axoga.to/images/stamps/chai.png" alt="chai button">
+            </a>
+            <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
+                <img width="88" height="31" src="/images/88x31s/pkhack.gif" alt="PK Hack button">
+            </a>
+        </div>
     </fieldset>
 </div>
 """
