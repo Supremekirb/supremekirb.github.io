@@ -16,6 +16,7 @@ NAVPANE = """\
             <li><a href="/bit.html">My sona</a></li>
             <li><a href="/earthbound">PK Hack dump</a></li>
             <li><a href="/tools">Tools</a></li>
+            <li><a href="/games/patcher.html">ROM hacks</a></li>
         </ul>
 
         <h3 class="ruletitle">
@@ -25,7 +26,7 @@ NAVPANE = """\
 
         <div class="t88x31-box-sidebar">
             <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
-                <img width="88" height="31" src="https://chromonym.pages.gay/buttons/cyan.png" alt="cyan.pet button"/>
+                <img width="88" height="31" src="https://cyan.pet/buttons/cyan.png" alt="cyan.pet button"/>
             </a>
             <a class="t88x31" title="gabbi!" href="https://ebbr.neocities.org" target="_blank">
                 <img src="/images/88x31s/ebbr.png" alt="ebbr button">

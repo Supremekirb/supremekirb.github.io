@@ -245,7 +245,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: var(--ebpurple);
 }
 
@@ -253,7 +253,7 @@ input[type="number"] {
     font-family: monospace;
 }
 
-input[type="file"] {
+#eb-rom-in {
     display: none;
 }
 
@@ -552,4 +552,25 @@ a.t88x31 img:active {
 @keyframes anim-burst-alt { 
     0% { transform: scale(1.5, 1.5); };
     100% { transform: scale(1, 1); };
+}
+
+/* unhidden by JS */
+.patch-info {
+    display: none;
+}
+
+.flex-half-box {
+    display: flex;
+    gap: 2%;
+}
+.flex-half {
+    flex: 0 50%;
+}
+
+@media(max-width: 991px) {
+    .flex-half-box {
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+    }
 }

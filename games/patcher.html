@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirb's corner</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/src/script.js"></script>
+    <script src="/src/rom_inspector.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/src/regular/style.css" />
+
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="KirbSite" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    
+    <link type="text/css" rel="stylesheet" href="./rom-patcher-js/style.css" media="all" />
+    <script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
+    
+    <script type="text/javascript">
+        const FILENAMES_TO_ID = {
+          "1 earthground_1_0.bps": "earthground",
+          "2 ebtrialtower_0_2.bps": "trialtower",
+          "3 ticketmaster_1_1.bps": "ticketmaster",
+          "4 eb_m3_prologue_0_1.bps": "m3prologue"
+        }
+        const IDS_TO_FILENAME = {
+          "earthground": "1 earthground_1_0.bps",
+          "trialtower": "2 ebtrialtower_0_2.bps",
+          "ticketmaster": "3 ticketmaster_1_1.bps",
+          "m3prologue": "4 eb_m3_prologue_0_1.bps"
+        }
+        window.addEventListener('load', async function(){
+            const patcherSettings={
+                language: 'en',
+                requireValidation: true, /* if true, user won't be able to apply patch if the provided ROM is not valid*/
+                allowDropFiles: true, /* if true, it adds basic drag and drop support */
+                oninitialize: function (romFile) {
+                  const patch = new URLSearchParams(window.location.search).get("patch")
+                  if (patch in IDS_TO_FILENAME) {
+                    RomPatcherWeb.pickEmbededFile(IDS_TO_FILENAME[patch])
+                  }
+                },
+                onloadpatch: function (patchFile, info) {
+                  for (const el of document.getElementsByClassName("patch-info")) {
+                    if (el.id === "info-" + FILENAMES_TO_ID[info.file]) {
+                      el.style.display = "block";
+                    } else {
+                      el.style.display = "none"
+                    }
+                  }
+                }
+            };
+            RomPatcherWeb.initialize(patcherSettings, {
+            file: "/games/patches/patches.zip",
+            patches: [
+                {
+                    file: "1 earthground_1_0.bps",
+                    name: "EB | EarthGround (v1.0)",
+                    outputName: "earthground_1_0",
+                },
+                {
+                    file: "2 ebtrialtower_0_2.bps",
+                    name: "EB | EarthBound Trial Tower (v0.2)",
+                    outputName: "ebtrialtower_0_2",
+                },
+                {
+                    file: "3 ticketmaster_1_1.bps",
+                    name: "EB | Ticketmaster (v1.1)",
+                    outputName: "ticketmaster_1_1",
+                    id: "ticketmaster"
+                },
+                {
+                    file: "4 eb_m3_prologue_0_1.bps",
+                    name: "EB | MOTHER 3 Prologue Recreation (v0.1)",
+                    outputName: "eb_m3_prologue_0_1",
+                    id: "m3-prologue"
+                },
+            ]
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <fieldset class="bigbox">
+            <h1 id="quote">•Play My Video Games, White Child</h1>
+        </fieldset>
+
+        <br>
+
+        <div id="contentblock">
+            <!--NAVBAR START-->
+            <div id="sidebar">
+                <fieldset class="lilbox" style="flex-grow: 1;">
+                    <legend>Navigation</legend>
+                    <h3 class="ruletitle">
+                        <div class="ruletitletext">Pages</div>
+                        <div class="ruletitleline"></div>
+                    </h3>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/projects.html">My stuff</a></li>
+                        <li><a href="/bit.html">My sona</a></li>
+                        <li><a href="/earthbound">PK Hack dump</a></li>
+                        <li><a href="/tools">Tools</a></li>
+                        <li><a href="/games/patcher.html">ROM hacks</a></li>
+                    </ul>
+            
+                    <h3 class="ruletitle">
+                        <div class="ruletitletext">Cool links</div>
+                        <div class="ruletitleline"></div>
+                    </h3>
+            
+                    <div class="t88x31-box-sidebar">
+                        <a class="t88x31" title="cyan!" href="https://cyan.pet/" target="_blank">
+                            <img width="88" height="31" src="https://cyan.pet/buttons/cyan.png" alt="cyan.pet button"/>
+                        </a>
+                        <a class="t88x31" title="gabbi!" href="https://ebbr.neocities.org" target="_blank">
+                            <img src="/images/88x31s/ebbr.png" alt="ebbr button">
+                        </a>
+                        <a class="t88x31" title="livvy!" href="https://livvy94.neocities.org/" target="_blank">
+                            <img width="88" height="31" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button">
+                        </a>
+                        <a class="t88x31" title="chai!" href="https://axoga.to" target="_blank">
+                            <img width="88" height"31" src="https://axoga.to/images/stamps/chai.png" alt="chai button">
+                        </a>
+                        <a class="t88x31" title="PK Hack!" href="https://starmen.net/pkhack/" target="_blank">
+                            <img width="88" height="31" src="/images/88x31s/pkhack.gif" alt="PK Hack button">
+                        </a>
+                    </div>
+                </fieldset>
+            </div>
+            <!--NAVBAR END-->
+
+            <div id="contentmain">
+                <fieldset class="lilbox hgrow">
+                    <legend>ROM Patcher</legend>
+                   	<!-- Rom Patcher JS container -->
+                   	<!--
+                  		The following elements are required for Rom Patcher JS to work:
+                 			#rom-patcher-input-file-rom
+                 			#rom-patcher-select-patch
+                 			#rom-patcher-button-apply
+                  		The rest of elements are informative and can be removed, though it's recommended to keep them for a better user experience.
+                   	-->
+                    <noscript>This requires JS!</noscript>
+                    <div class="flex-half-box">
+                        <div class="flex-half">
+                           	<div id="rom-patcher-container">
+                          		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-patch">
+                         			<div class="text-right"><label for="rom-patcher-input-file-patch" data-localize="yes">Patch:</label>
+                         			</div>
+                         			<div class="rom-patcher-container-input">
+                            				<select id="rom-patcher-select-patch"></select>
+                         			</div>
+                          		</div>
+                            
+                          		<div class="rom-patcher-row margin-bottom" id="rom-patcher-row-file-rom">
+                         			<div class="text-right"><label for="rom-patcher-input-file-rom" data-localize="yes">ROM file:</label></div>
+                         			<div class="rom-patcher-container-input">
+                            				<input type="file" id="rom-patcher-input-file-rom" class="empty" disabled />
+                         			</div>
+                          		</div>
+                          		<div class="margin-bottom text-selectable text-mono text-muted" id="rom-patcher-rom-info">
+                         			<div class="rom-patcher-row">
+                            				<div class="text-right">CRC32:</div>
+                            				<div class="text-truncate"><span id="rom-patcher-span-crc32"></span></div>
+                         			</div>
+                         			<div class="rom-patcher-row" id="rom-patcher-row-info-rom">
+                            				<div class="text-right">ROM:</div>
+                            				<div class="text-truncate"><span id="rom-patcher-span-rom-info"></span></div>
+                         			</div>
+                          		</div>
+                          		<div class="rom-patcher-row margin-bottom text-selectable text-mono text-muted"
+                         			id="rom-patcher-row-patch-requirements">
+                         			<div class="text-right text-mono" id="rom-patcher-patch-requirements-type">ROM requirements:</div>
+                         			<div class="text-truncate" id="rom-patcher-patch-requirements-value"></div>
+                          		</div>
+                                            
+                          		<div class="text-center" id="rom-patcher-row-apply">
+                         			<div id="rom-patcher-row-error-message" class="margin-bottom"><span id="rom-patcher-error-message"></span>
+                         			</div>
+                         			<button id="rom-patcher-button-apply" data-localize="yes" disabled>Apply patch</button>
+                          		</div>
+                           	</div>
+                                            
+                           	<div id="rom-patcher-powered" class="text-center">
+                          		<a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"><img
+                            				src="rom-patcher-js/assets/powered_by_rom_patcher_js.png" loading="lazy" />Powered by Rom Patcher JS</a>
+                           	</div>
+                        </div>
+                        
+                        <div class="flex-half">
+                            <div id="info-earthground" class="patch-info">
+                                <fieldset class="imgbox" style="width: 50%">
+                                    <img src="/images/earthground.png" style="width:100%">
+                                </fieldset>
+                                <h3>EarthGround</h3>
+                                <p>
+                                    Turns EarthBound into a platformer by rewriting the player movement code!
+                                    You can play the entire game from start to finish.
+                                    <br>
+                                    Made in a week for Jank Jam 1.
+                                    <br>
+                                    (NOTE: Don't press directions during cutscenes.)
+                                </p>
+                            </div>
+                            
+                            <div id="info-trialtower" class="patch-info">
+                                <fieldset class="imgbox" style="width: 50%">
+                                    <img src="/images/ebtrialtower.png" style="width:100%">
+                                </fieldset>
+                                <h3>EarthBound Trial Tower</h3>
+                                <p>
+                                    A hack that turns the game into a roguelike! Choose a character and scale the Monotoli Building,
+                                    fighting 100 back-to-back battles, while choosing upgrades and perks to
+                                    make your team stronger. Also features high-score recording.
+                                    <br>
+                                    Made in a couple weeks for Jank Jam 2.
+                                </p>
+                            </div>
+                            
+                            <div id="info-ticketmaster" class="patch-info">
+                                <fieldset class="imgbox" style="width: 50%">
+                                    <img src="/images/ticketmaster.png" style="width:100%">
+                                </fieldset>
+                                <h3>Ticketmaster</h3>
+                                <p>
+                                    Battle enemies with new real-time action commands in order to win the Starstruck Sweepstakes!
+                                    Spend tickets to get gear, items, and special moves, and fight a few secret bosses along the way.
+                                    <br>
+                                    Made with Chalkmuncher in a couple weeks for Jank Jam 3.
+                                </p>
+                            </div>
+                            
+                            <div id="info-m3prologue" class="patch-info">
+                                <fieldset class="imgbox" style="width: 50%">
+                                    <img src="/images/mother3.png" style="width:100%">
+                                </fieldset>
+                                <h3>MOTHER 3 Prologue Recreation</h3>
+                                <p>
+                                    This hack recreates a portion of MOTHER 3's prologue as accurately as possible.
+                                    There's no music, though.
+                                    <br>
+                                    This was made for Starmen.net's MOTHER 3 17th Anniversary Funfest.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <p>
+                    Bad checksum? Try using the <a href="/tools/rom_inspector.html">ROM inspector</a>.
+                </p>
+                </fieldset>
+            </div>
+        </div>
+        <!--FOOTER START-->
+        <img src="/images/gayass-derg/laptop.png" style="display: block; width: 100%; max-width: 700px; margin: auto;">
+        <!--FOOTER END-->
+    </div>
+</body>
+
+</html>
