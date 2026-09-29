@@ -1,0 +1,20 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro"
+import LilBox from "/src/components/LilBox.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+import BlogPost from "/src/components/BlogPost.astro"
+import BoxButtonGroup from "/src/components/BoxButtonGroup.astro"
+
+import { getCollection } from 'astro:content';
+const posts = await getCollection('blog');
+
+---
+<StandardLayout title="•The blog" args={{ title: "Kirb's blog" }}>
+    <LilBox hgrow legend="Welcome to the blog">
+        <p>Here is where I will post very infrequent ramblings.</p>
+        <BoxButtonGroup links={[
+          { name: "Feed (of) the dragon", url: "/blog/feed.xml", icon: "https://cdn.simpleicons.org/rss/white?viewbox=auto" }
+        ]} />
+    </LilBox>
+    {posts.map((post) => <BlogPost url=`/blog/posts/${post.id}` title={post.data.title} description={post.data.description} date={post.data.pubDate.toLocaleDateString()} />)}
+</StandardLayout>

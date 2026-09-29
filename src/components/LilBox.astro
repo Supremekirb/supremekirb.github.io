@@ -1,0 +1,8 @@
+---
+const { legend, hgrow, class: className, ...rest } = Astro.props;
+---
+
+<fieldset class:list={['lilbox', { hgrow: hgrow }, { [className]: className }]} {...rest}>
+    { legend && <legend>{legend}</legend> }
+    <slot />
+</fieldset>

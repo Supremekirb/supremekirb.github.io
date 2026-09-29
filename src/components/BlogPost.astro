@@ -1,0 +1,10 @@
+---
+import LilBox from "/src/components/LilBox.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+
+const { title, description, date, url } = Astro.props
+---
+<LilBox hgrow legend={date}>
+    <RuleTitle text=`<a href=${url}>${title}</a>` HeaderType=h1 />
+    <p>{description}</p>
+</LilBox>

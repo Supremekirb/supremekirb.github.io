@@ -1,0 +1,24 @@
+---
+const { title, image, credit, height } = Astro.props;
+---
+<fieldset>
+    <h1 id="quote" set:html={title}/>
+    {image && <img src={image} height={height} class="content-desktop"/>}
+    {credit && <i class="content-desktop">{credit}</i>}
+</fieldset>
+<style>
+fieldset {
+    box-shadow: 0 0 0 5px var(--eblightgrey), 0 0 0 10px var(--ebwhite), 0 0 0 15px var(--eblightgrey), 0 0 0 16px var(--ebbg);
+    margin: 16px auto;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+img {
+    position: absolute;
+    right: 10%;
+    top: 0%;
+}
+i {
+    color: var(--ebgrey);
+}
+</style>

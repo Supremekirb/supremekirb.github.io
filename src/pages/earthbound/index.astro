@@ -1,0 +1,259 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro";
+import LilBox from "/src/components/LilBox.astro";
+import RuleTitle from "/src/components/RuleTitle.astro"
+---
+<StandardLayout title="•Ness opened the chest.<br>•WHOAAAAAAAAAAH!" image="/images/gayass-derg/dump.png" credit="Art by LogaNyan" height="300px">
+    <LilBox hgrow legend="The Dump">
+        <p>A whole bunch of stuff that I've slowly gathered over my time hacking EB.</p>
+        <p>Tools, documentation, scripts... Things by me, things by other people...</p>
+        <p>Discord won't be around forever, so all the handy stuff lying around in the PK Hack server needs to be archived.</p>
+        <p>Links that look like file names will take you directly to the file. Links that don't will take you to another webpage.</p>
+    </LilBox>
+    <br>
+    <LilBox hgrow>
+        <RuleTitle text="Original EarthBound Script" />
+        <p>
+            The EB devs wrote the game script in a format they called "MSG" which probably stands for "Message" and not "Monosodium glutamate".
+            <br> In 2021, localization development files were recovered, including an almost-complete dump of the game script!
+            <br> It contains comments (mostly in Japanese) and labels which could make it a more useful script reference. Plus it's cool.
+            <br> The amazing Catador also made a list of the commands in the MSG format compared to their CCScript equivalents.
+        </p>
+        <ul>
+            <li>
+                <a href="https://archive.org/details/earthbound-source">Script dump [Archive.org]</a>
+            </li>
+            <li>
+                <a href="files/Official_control_code_names.txt">Official_control_code_names.txt</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="BPM calculator" />
+        <p>
+            This Python script turns a beats-per-minute value into the tempo byte that EBMusEd takes. It was written by Crafty.
+        </p>
+        <ul>
+            <li>
+                <a href="files/bpm.py">bpm.py</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="How to expand tables" />
+        <p>
+            JTolmar wrote this little step-by-step guide on how to expand any standard table you like via CCScript. Here it is:
+        </p>
+        <blockquote>
+            <ul>
+                <li>find every reference to the table (just search its name on ebsrc eg <a href="https://github.com/Herringway/ebsrc/search?q=SCREEN_TRANSITION_CONFIG_TABLE">this</a>)
+                </li>
+                <li>find the addresses of those references to it for each address:</li>
+                <li>if it&#39;s a whole address in one spot (rare), do<span> </span>
+                    <code>ROM[address of table reference] = {'{'} long MyExpandedTable {'}'}</code>
+                </li>
+                <li>if it&#39;s broken up into two,<span> </span>
+                    <code>ROM[address of high bytes] = {'{'} short[0] MyExpandedTable {'}'}</code> and<span> </span>
+                    <code>ROM[address of low bytes] = {'{'} short[1] MyExpandedTable {'}'}</code>
+                </li>
+                <li>the usual way EB loads pointers is already a macro in asm65816 -<span> </span>
+                    <code>ASMLoadAddress06()</code> (find the start of the inevitable<span> </span>
+                    <code>LDA const STA $06 LDA const STA $08</code> in the asm,<span> </span>
+                    <code>ROM[start of that] = {'{'} ASMLoadAddress06(MyExpandedTable) {'}'}</code>
+                    . ebsrc also has a macro for this, so you&#39;ll just see <code>LOADPTR const</code> instead of<span> </span>
+                    <code>LDA const STA $06 LDA const STA $08</code>
+                </li>
+            </ul>
+        </blockquote>
+
+        <RuleTitle text="Instrument packs list" />
+        <ul>
+            <li>
+                <a href="https://gist.github.com/livvy94/cb70ddd4c5309c0c52e662f985d6648b">Livvy's
+                    instrument
+                    packs
+                    list [Gist]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="Sprite groups spreadsheet" />
+        <ul>
+            <li>
+                <a href="https://docs.google.com/spreadsheets/d/1OGbN2X91BNACqfj_gBlcOJj0utaOy_ywS-qCLhe0Oek/edit#gid=518891898">Sprite
+                    groups spreadsheet [Google Docs]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="ebsrc to listing" />
+        <p>
+            Coops's converter of ebsrc code to a bunch of text files.
+            <br> The bonus is that the address of every single line is included, which makes it a very useful reference for ASM hacks.
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/charasyn/ebsrc-to-listing">ebsrc-to-listing [GitHub]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="Debug symbol generator" />
+        <p>
+            Takes a CCScript-outputted <code>summary.txt</code> and creates a file of debug symbols that Mesen can read.
+            <br> Run it as the last step of your build scripts.
+        </p>
+        <ul>
+            <li>
+                <a href="files/generate_debug_symbols.py">generate_debug_symbols.py</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="Unique Tile Finder" />
+        <p>
+            This program looks at an image and tells you how many unique tiles there are, and where they are.
+            <br> Use it to reduce the amount of unique tiles before running png2fts.
+        </p>
+        <ul>
+            <li>
+                <a href="https://mrlevrocks.itch.io/utf">Unique Tile Finder [Itch.io]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="ROM hash stuff" />
+        <p>
+            CRC32 and MD5 hashes for various "clean" EB ROMs and a tool to quickly calculate them.
+            <br> The Python script will get the hashes of every <code>*.sfc</code> in the current directory.
+        </p>
+        <ul>
+            <li>
+                <a href="files/hashes.txt">hashes.txt</a>
+            </li>
+            <li>
+                <a href="files/checksum.py">checksum.py</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="True vanilla sound driver disassembly" />
+        <p>
+            Catador provided a disassembly of the game's sound driver, and I modified it to work nicer with CoilSnake.
+            <br> That's the one on the wiki. Here is the unmodified driver, which will compile to a byte-perfect copy of the vanilla one.
+            <br> Use Asar to compile it.
+        </p>
+        <ul>
+            <li>
+                <a href="https://drive.google.com/file/d/1AK8nLNZMTlMdH78YZsjrxN5X40zynAkO/view?usp=sharing">sounddriver.zip
+                    [Google Drive]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="EBBG Previewer" />
+        <p>
+            Vittorio made this neat tool which helps with quickly drafting battle background distortion settings.
+            <br> Until somebody figures out how to perfectly replicate the effects, this is the best way to do it.
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/Vittorioux/EBBG-Previewer">EBBG-Previewer [GitHub]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="Script dumpers" />
+        <p>
+            A tool originally by Catador which takes a ROM and dumps the script in a readable format (more readable than CCSWriter, anyway...).
+            <br> JTolmar modified it to output to HTML, and then I modified that to split it over several files.
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/CataLatas/earthbound-script-dumper">Catador's (Plaintext)
+                    [GitHub]</a>
+            </li>
+            <li>
+                <a href="https://github.com/tolmar/earthbound-script-dumper-html">JTolmar's (HTML)
+                    [GitHub]</a>
+            </li>
+            <li>
+                <a href="https://github.com/Supremekirb/earthbound-script-dumper-html">Mine (HTML + several
+                    files)
+                    [GitHub]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="ASM resources" />
+        <p>
+            Useful webpages that I come back to frequently when writing assembly.
+        </p>
+        <ul>
+            <li>
+                <a href="https://wiki.superfamicom.org/65816-reference">Opcode reference [SFC Wiki]</a>
+            </li>
+            <li>
+                <a href="https://nesdoug.com/2020/04/03/65816-basics/">Some tutorials [NESDoug.com]</a>
+            </li>
+            <li>
+                <a href="http://www.6502.org/tutorials/65c816opcodes.html">A different opcode reference
+                    [6502.org]</a>
+            </li>
+            <li>
+                <a href="https://gist.github.com/HS39/860d79169459dc256acfbeecdb3e2281">asm65816 for CCS
+                    addressing
+                    modes [Gist]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="CCScript language" />
+        <p>
+            Standard definitions, command reference, and language spec.
+        </p>
+        <ul>
+            <li>
+                <a href="https://starmen.net/pkhack/ccscript/Reference.html">Command reference
+                    [Starmen.net]</a>
+            </li>
+            <li>
+                <a href="https://starmen.net/pkhack/ccscript/CCScript.html">Language spec [Starmen.net]</a>
+            </li>
+            <li>
+                <a href="https://github.com/pk-hack/mobile-sprout/blob/29d3361f90dedea1d813ad85a5960c4fdb569c91/lib/std.ccs">Standard
+                    definitions [GitHub]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="Old forum" />
+        <p>
+            Take a look at what hackers were up to a few decades ago.
+        </p>
+        <ul>
+            <li>
+                <a href="http://oldforum.fobby.net/">Old forum [Fobby]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="EB file icon pack" />
+        <p>
+            I made these icons which you can use for file types common to EB hacking like CCS, BRR, and EBM.
+            <br> It's a little annoying to set up this stuff on Windows but you can look up how to do it.
+        </p>
+        <ul>
+            <li>
+                <a href="https://drive.google.com/file/d/1IRzGSYzwVrnAhzLWdomYgLsMbtr3Oyof/view?usp=sharing">icons.zip
+                    [Google Drive]</a>
+            </li>
+        </ul>
+
+        <RuleTitle text="More to come" />
+
+        <!--
+        - GAIN-fixed EBMusEd
+        - Various CCS files from projects
+        - The EBsrc commit before names were removed
+        - BRR player
+        - C700 VST thing
+        - EB fonts
+        - Pixel font generator
+        - EB BRRs
+        - Movement notes
+        - SFX notes
+        - Debug Mode notes
+        - CCS forum thread
+        - BRR forum thread
+        - earthbounD
+        - ebasm-mra (not very good)
+        -->
+    </LilBox>
+</StandardLayout>

@@ -1,0 +1,94 @@
+---
+import BaseLayout from "/src/layouts/BaseLayout.astro";
+import LilBox from "/src/components/LilBox.astro";
+import BoxButtonGroup from "/src/components/BoxButtonGroup.astro";
+import Gallery from "/src/components/Gallery.astro";
+import HoverImgLink from "/src/components/HoverImgLink.astro"
+import T88x31 from "/src/components/T88x31.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+---
+<BaseLayout mainStyle="position: relative; z-index: 0;">
+    <div slot="before-content">
+        <h3>bitdragon.dev</h3>
+        <div style="font-size: 6vw">SupremeKirb</div>
+        <p>
+            they/them • UTC+09:30/10:30
+            <br>
+            Hi hi! You can call me Kirb or Bit.
+            <br>
+            Professional unprofessional programmer, occasional artist, creature lover, and ROM hacker.
+            <br>
+            I like messing around with old software and hardware and making interesting things!
+            <br>
+        </p>
+        <BoxButtonGroup links={[
+          { name: "Starmen.net", url: "https://forum.starmen.net/members/SupremeKirbo", icon: "images/icons/starmen.png" },
+          { name: "GitHub", url: "https://github.com/supremekirb", icon: "https://cdn.simpleicons.org/github/white?viewbox=auto" },
+          { name: "Youtube", url: "https://youtube.com/@supremekirb", icon: "https://cdn.simpleicons.org/youtube/white?viewbox=auto" },
+          { name: "Tumblr", url: "https://www.tumblr.com/blog/supremekirb", icon: "https://cdn.simpleicons.org/tumblr/white?viewbox=auto" },
+          { name: "Bluesky", url: "https://bsky.app/profile/bitdragon.dev", icon: "https://cdn.simpleicons.org/bluesky/white?viewbox=auto" }
+        ]} />
+        <p>
+            Also on Discord <code>@supremekirbnouveau</code> and Fluxer <code>SupremeKirb#2761</code>
+        </p>
+    </div>
+    <div style="position: relative;" slot="before-content">
+        <div class="content-desktop">
+            <img src="/images/gayass-derg/homepage_bg_below.png" style="position: absolute; z-index: -1; width: 40vw; right: -7vw; top: -24vw; user-select: none; pointer-events: none;">
+            <img src="/images/gayass-derg/homepage_bg_above.png" style="position: absolute; z-index:  1; width: 40vw; right: -7vw; top: -24vw; user-select: none; pointer-events: none;">
+        </div>
+        <LilBox hgrow legend="Quick navigation">
+            <Gallery>
+                <HoverImgLink href="/projects" src="/images/gayass-derg/homepage_stuff.png" src2="/images/gayass-derg/homepage_stuff_hover.png" />
+                <HoverImgLink href="/tools" src="/images/gayass-derg/homepage_tools.png" src2="/images/gayass-derg/homepage_tools_hover.png" />
+                <HoverImgLink href="/blog" src="/images/gayass-derg/homepage_blog.png" src2="/images/gayass-derg/homepage_blog_hover.png" />
+            </Gallery>
+        </LilBox>
+    </div>
+    <LilBox hgrow legend="88x31">
+        <p>
+            Please feel free to add this to your page! :3
+        </p>
+        <div style="text-align: center;">
+            <T88x31 id="bitbutton-copyer" title="Click to copy me!" src="/images/gayass-derg/88x31.png" alt="Bit button" />
+        </div>
+        <br>
+        <div id="copy-response" style="text-align: center;">Click to copy it!<noscript> (JS only)</noscript></div>
+        <noscript>
+            But since you have JS off, use this:
+            <textarea readonly="true" style="resize: vertical">
+&lt;a title="Bit!" href="https://bitdragon.dev" target="_blank"&gt;
+&lt;img width="88" height="31" src="https://bitdragon.dev/images/gayass-derg/88x31.png" alt="Bit button"&gt;
+&lt;/a&gt;</textarea>
+        </noscript>
+    </LilBox>
+    <LilBox hgrow legend="News">
+        <RuleTitle text="Backend migration" />
+        <p>I've just finished recreating the site using Astro. Please let me know if anything is broken.</p>
+        <RuleTitle text="Online patcher" />
+        <p>You can now patch my ROM hacks directly on the site. Check it out <a href="/games/patcher">here</a>.</p>
+        <RuleTitle text="New design!" />
+        <p>The main page has had a little redesign. I hope you like it :3</p>
+        <RuleTitle text="BGR555 colour converter" />
+        <p>Added a new tool: <a href=tools/bgr555_converter>BGR555 colour converter</a>. This is for converting colours between modern formats and the Super NES hardware format.</p>
+    </LilBox>
+</BaseLayout>
+<script>
+// Copy button
+
+const copybutton_text = `\
+<a title="Bit!" href="https://bitdragon.dev" target="_blank">
+<img width="88" height="31" src="https://bitdragon.dev/images/gayass-derg/88x31.png" alt="Bit button">
+</a>`
+document.getElementById("bitbutton-copyer")?.addEventListener("click", (event) => {
+  navigator.clipboard.writeText(copybutton_text)
+  let copyresponse = document.getElementById("copy-response")
+  copyresponse.innerText = "Copied!"
+  if (copyresponse.style.animationName === "anim-burst-alt") {
+    copyresponse.style.animation = "anim-burst 0.1s linear"
+  } else {
+    copyresponse.style.animation = "anim-burst-alt 0.1s linear"
+  }
+  
+})
+</script>

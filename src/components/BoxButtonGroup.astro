@@ -1,0 +1,22 @@
+---
+import BoxButton from "/src/components/BoxButton.astro"
+const { links } = Astro.props
+---
+<div>
+  {links.map((data) => <BoxButton text={data.name} url={data.url} icon={data.icon}/>)}
+<style>
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+@media(max-width: 991px) {
+    div {
+        flex-direction: column;
+        width: fit-content;
+        text-align: center;
+        margin: auto;
+    }
+}
+</style>
+</div>

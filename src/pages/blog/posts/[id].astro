@@ -1,0 +1,28 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro"
+import LilBox from "/src/components/LilBox.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  console.log("YATGLE")
+  console.log(posts)
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+---
+<StandardLayout title=`•${post.data.title}` headArgs={{ title: `${post.data.title} - Kirb's blog`, description: post.data.description}}>
+    <LilBox legend={post.data.pubDate.toLocaleDateString()}>
+        <a href="/blog">&lt; Back to blog index</a>
+        <div class="text-article">
+            <RuleTitle text={post.data.title} HeaderType=h1 />
+            <Content />
+        </div>
+    </LilBox>
+</StandardLayout>

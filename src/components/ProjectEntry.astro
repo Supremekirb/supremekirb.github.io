@@ -1,0 +1,46 @@
+---
+import BoxButtonGroup from "/src/components/BoxButtonGroup.astro"
+const { title, image_src, links=[] } = Astro.props;
+---
+<div class="project-entry">
+    <div class="project-text">
+        <h2>{title}</h2>
+        <hr class="content-desktop">
+        <fieldset class="imgbox content-mobile">
+            <img src={image_src} style="width: 100%;">
+        </fieldset>
+        <slot />
+        <BoxButtonGroup links={links} />
+    </div>
+    <div class="project-image content-desktop">
+        <fieldset class="imgbox">
+            <img src={image_src} style="width:100%;">
+        </fieldset>
+    </div>
+</div>
+<style>
+    .project-entry {
+        display: flex;
+        gap: 5%;
+        padding: 1%;
+    }
+    @media(max-width: 991px) {
+        .project-entry {
+            display: block;
+        }
+    }
+    .project-text, .project-image {
+        flex: 50%;
+    }    
+    @media(max-width: 991px) {
+        .content-desktop {
+            display: none;
+        }
+    }
+    
+    @media(min-width: 991px) {
+        .content-mobile {
+            display: none;
+        }
+    }
+</style>

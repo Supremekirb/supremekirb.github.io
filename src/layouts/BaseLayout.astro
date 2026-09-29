@@ -1,0 +1,23 @@
+---
+import Head from "/src/components/Head.astro";
+import Foot from "/src/components/Foot.astro";
+import Nav from "/src/components/Nav.astro";
+
+const { mainStyle, headArgs } = Astro.props;
+---
+
+<html lang="en">
+    <Head title={headArgs?.title} image={headArgs?.image} description={headArgs?.description}/>
+    <body>
+        <div id="main" style={mainStyle}>
+            <slot name="before-content" />
+            <div id="contentblock">
+                <Nav />
+                <div id="contentmain">
+                    <slot />
+                </div>
+            </div>
+            <Foot />
+        </div>
+    </body>
+</html>

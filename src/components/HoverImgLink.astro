@@ -1,0 +1,33 @@
+---
+const { href, src, src2 } = Astro.props;
+---
+<a href={href}>
+    <img src={src}>
+    <img src={src2}>
+</a>
+<style>
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: unset;
+}
+
+a img:last-child {
+    display: none;
+}
+
+a:hover img:first-child {
+    display: none;
+}
+
+a:hover img:last-child {
+    display: block;
+}
+img {
+    width: 100%;
+    max-width: 15em;
+    margin: auto;
+}
+</style>

@@ -1,0 +1,113 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro";
+import LilBox from "/src/components/LilBox.astro";
+import ProjectEntry from "/src/components/ProjectEntry.astro"
+---
+
+<StandardLayout title="•Projects and stuff!" image="/images/gayass-derg/projects.png" credit="Art by me">
+    <LilBox legend="Projects" hgrow>
+        <ProjectEntry title="EBME" image_src="/images/ebme.png" links={[
+          { name: "GitHub", url: "https://github.com/supremekirb/ebme", icon: "https://cdn.simpleicons.org/github/white?viewbox=auto" },
+          { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/EBME-The-new-map-editor", icon: "/images/icons/starmen.png" }
+        ]}>
+            <p>
+                The primary map editor for EarthBound, made to replace the previous editor which was
+                nearly 20 years old. It's written in Python using Qt via PySide6. It reads and writes
+                CoilSnake projects.
+            </p>
+            Features:
+            <ul>
+                <li>Complete undo / redo support</li>
+                <li>Editing data of objects within the program</li>
+                <li>Interactive png2fts integration (convert images to map data)</li>
+                <li>Collision painting</li>
+                <li>Advanced tools for manipulating palettes</li>
+                <li>Mario Paint minigame</li>
+            </ul>
+        </ProjectEntry>
+        
+        <ProjectEntry title="TicketMaster" image_src="/images/ticketmaster.png" links={[
+          { name: "Patch online", url: "/games/patcher?patch=ticketmaster", icon: "/images/icons/box-arrow-down.png" },
+          { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/Jank-Jam-3/2359640", icon: "/images/icons/starmen.png" },
+          { name: "Demonstration video", url: "https://youtu.be/APr9bJE4Aec", icon: "https://cdn.simpleicons.org/youtube/white?viewbox=auto" }
+        ]}>
+            <p>
+                A hack of EarthBound made with chalkmuncher for a week-long hacking jam. She did the art, I did the gameplay.
+                You play as a duo of cats trying to cheat at a ticket-gathering promotion event by stealing people's tickets.
+                It's the first EarthBound hack to have an action command system, like Paper Mario.
+            </p>
+        </ProjectEntry>
+        
+        <ProjectEntry title="EarthBound Trial Tower" image_src="/images/ebtrialtower.png" links={[
+            { name: "Patch online", url: "/games/patcher?patch=trialtower", icon: "/images/icons/box-arrow-down.png" },
+            { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/Jank-Jam-2/2354659", icon: "/images/icons/starmen.png" }
+        ]}>
+            <p>
+                Made for a 2-week hacking jam, EB Trial Tower turns the game into a complete rougelike;
+                including 100 floors of battles, over 30 types of upgrades, and the bass from Gimmick!
+                for NES.
+            </p>
+        </ProjectEntry>
+        
+        <ProjectEntry title="EarthBound Beginnings Remake" image_src="/images/ebbr.png" links={[
+          { name: "Official website", url: "https://ebbr.neocities.org", icon: "/images/icons/globe.png" },
+          { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/The-EarthBound-Beginnings-Remake-Hack", icon: "/images/icons/starmen.png" },
+          { name: "Discord", url: "https://discord.gg/u8JxqS8Vs4", icon: "https://cdn.simpleicons.org/discord/white?viewbox=auto" }
+        ]}>
+            <p>
+                A full remake of the NES game EarthBound Beginnings as a ROM hack of its SNES sequel.
+                I worked on this project as a programmer and scripter (as well as small musical and graphical contributions) from early 2023 to its release in June 2026.
+                I also wrote a chunk of the bugfix/quality-of-life improvements in its sister hack EarthBound: Giygas Strikes Back.
+            </p>
+        </ProjectEntry>
+        
+        <ProjectEntry title="EarthGround" image_src="/images/earthground.png" links={[
+          { name: "Patch online", url: "/games/patcher?patch=earthground", icon: "/images/icons/box-arrow-down.png" },
+          { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/1st-PK-Hack-Jank-Jam/2345182", icon: "/images/icons/starmen.png" },
+          { name: "GitHub", url: "https://github.com/pk-hack/CoilSnake/wiki/CCScript-Library#platformer-script-by-supremekirb-based-off-jtolmars-work", icon: "https://cdn.simpleicons.org/github/white?viewbox=auto" }
+        ]}>
+            <p>
+                This was made for the first PK Hack Jank Jam. It's a rewrite of the collision and player
+                movement code in EarthBound to turn the game into a 2D platformer. Southwards is
+                downwards, and you can use the Y button to jump. Complete with wall kicks, it's possible
+                to beat the entire game in this strange way.
+                <br><br>
+                Additionally, the code behind it is distributed in a script you can include in
+                your own EB hacks!
+            </p>
+        </ProjectEntry>
+        
+        <ProjectEntry title="MOTHER 3 prologue SNES demake" image_src="/images/mother3.png" links={[
+          { name: "Patch online", url: "/games/patcher?patch=m3prologue", icon: "/images/icons/box-arrow-down.png" },
+          { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/The-MOTHER-3-Prologue-Demake", icon: "/images/icons/starmen.png" },
+          { name: "Demonstration video", url: "https://youtu.be/bm8Q1VB88io", icon: "https://cdn.simpleicons.org/youtube/white?viewbox=auto" }
+        ]}>
+            <p>
+                A hack of EarthBound which turns it into a highly accurate recreation of MOTHER 3's
+                prologue sequence. This was made for the 17th anniversary MOTHER 3 funfest on
+                Starmen.net. Currently, it's possible to play up until the area with the Dragos. I plan
+                on finishing it someday.
+            </p>
+        </ProjectEntry>
+        
+        <ProjectEntry title="Joplin To-do View" image_src="/images/todoview.png" links={[
+          { name: "Joplin plugins", url: "https://joplinapp.org/plugins/plugin/com.supremekirb.TodoView", icon: "https://cdn.simpleicons.org/joplin/white?viewbox=auto" },
+          { name: "GitHub", url: "https://github.com/supremekirb/joplin-todo-view", icon: "https://cdn.simpleicons.org/github/white?viewbox=auto" },
+          { name: "NPM", url: "https://www.npmjs.com/package/joplin-plugin-to-do-view", icon: "https://cdn.simpleicons.org/npm/white?viewbox=auto" }
+        ]}>
+            <p>
+                A plugin for the note-taking app Joplin which displays all your to-do items in a list.
+                They're sorted into categories based on when they're due.
+            </p>
+        </ProjectEntry>
+        
+        <ProjectEntry title="EarthBound Mini-Golf (working title)" image_src="/images/ebgolf.png">
+            <p>
+                [AS YET UNRELEASED]
+                <br>
+                Through the power of actual straight-up dark magic, this hack
+                turns EarthBound into a mini-golf game.
+            </p>
+        </ProjectEntry>
+    </LilBox>
+</StandardLayout>

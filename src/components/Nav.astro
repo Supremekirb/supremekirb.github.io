@@ -1,0 +1,28 @@
+---
+import LilBox from "/src/components/LilBox.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+import T88x31 from "/src/components/T88x31.astro"
+---
+<div id="sidebar">
+    <LilBox legend="Navigation" style="flex-grow: 1;">
+        <RuleTitle text="Pages" />
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/projects">My stuff</a></li>
+            <li><a href="/bit">My sona</a></li>
+            <li><a href="/earthbound">PK Hack dump</a></li>
+            <li><a href="/tools">Tools</a></li>
+            <li><a href="/games/patcher">ROM hacks</a></li>
+        </ul>
+        <RuleTitle text="Cool links" />
+        <div style="text-align: center;">
+            <T88x31 title="cyan!" href="https://cyan.pet" src="https://cyan.pet/buttons/cyan.png" alt="cyan.pet button"/>
+            <T88x31 title="chai!" href="https://axoga.to" src="https://axoga.to/images/stamps/chai.png" alt="chai button" />
+            <T88x31 title="mae!" href="https://chalksmalkzone.neocities.org" src="https://chalksmalkzone.neocities.org/art/htmlbutton.gif" alt="mae button" />
+            <T88x31 title="livvy!" href="https://livvy94.neocities.org" src="https://livvy94.neocities.org/images/buttons/livvybutton.gif" alt="livvy94 button" />
+            <T88x31 title="ebbr!" href="https://ebbr.neocities.org" src="/images/88x31s/ebbr.png" alt="ebbr button" />
+            <T88x31 title="PK Hack!" href="https://starmen.net/pkhack" src="/images/88x31s/pkhack.gif" alt="PK Hack button" />
+        </div>
+    </LilBox>
+</div>

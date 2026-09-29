@@ -1,0 +1,89 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro"
+import ToolsPreamble from "/src/components/ToolsPreamble.astro"
+import LilBox from "/src/components/LilBox.astro"
+---
+<StandardLayout title="•EBMusEd Tempo Calculator">
+    <LilBox hgrow legend="Tempo Calculator">
+        <ToolsPreamble />
+        <p>
+            This tool converts between beats-per-minute (BPM) and N-SPC tempo values (that you input
+            in EBMusEd).<br>
+            The formula for BPM → N-SPC is <code>12288 / (60000 / bpm)</code>.<br>
+            The formula for N-SPC → BPM is <code>60000 / (12288 / nspc)</code>.<br>
+            As you change the input in one box, the other will update. <b>All input values are in decimal.</b>
+        </p>
+        <div style="display: flex; flex-wrap: wrap">
+            <LilBox>
+                <h3>BPM tempo</h3>
+                <input type="number" id="bpm-value" value="100" placeholder="BPM tempo value (decimal)">
+                <br><br>
+                <div>Integer: <code id="bpm-out-int">100</code></div>
+            </LilBox>
+            <LilBox>
+                <h3>N-SPC tempo</h3>
+                <input type="number" id="nspc-value" value="20.48" placeholder="N-SPC tempo value (decimal)">
+                <br><br>
+                <div>Integer: <code id="nspc-out-int">20</code></div>
+                <div>Hexadecimal: <code id="nspc-out-hex">0x14</code></div>
+                <div>Tempo instruction: <code id="nspc-out-opc">[E7 14]</code></div>
+            </LilBox>
+        </div>
+    </LilBox>
+</StandardLayout>
+<script>
+function bpm_to_nspc(bpm) {
+    return 12288 / (60000 / bpm)
+}
+
+function nspc_to_bpm(nspc) {
+    return 60000 / (12288 / nspc)
+}
+
+const bpm_value = document.getElementById("bpm-value")
+const bpm_out_int = document.getElementById("bpm-out-int")
+const nspc_value = document.getElementById("nspc-value")
+const nspc_out_int = document.getElementById("nspc-out-int")
+const nspc_out_hex = document.getElementById("nspc-out-hex")
+const nspc_out_opc = document.getElementById("nspc-out-opc")
+
+bpm_value.addEventListener('input', function (event) {
+    let bpm = parseFloat(event.target.value)
+    if (isNaN(bpm)) {
+        nspc_value.value = null
+        return
+    }
+    if (bpm < 0) {
+        bpm = 0
+    }
+    if (bpm > 1247) {
+        bpm = 1247
+    }
+    let nspc = bpm_to_nspc(bpm)
+    nspc_value.value = nspc.toString()
+    bpm_out_int.innerHTML = Math.round(bpm).toString()
+    nspc_out_int.innerHTML = Math.round(nspc).toString()
+    nspc_out_hex.innerHTML = `0x${Math.round(nspc).toString(16).padStart(2, "0").toUpperCase()}`
+    nspc_out_opc.innerHTML = `[E7 ${Math.round(nspc).toString(16).padStart(2, "0").toUpperCase()}]`
+})
+
+nspc_value.addEventListener('input', function (event) {
+    let nspc = parseFloat(nspc_value.value)
+    if (isNaN(nspc)) {
+        bpm_value.value = null
+        return
+    }
+    if (nspc < 0) {
+        nspc = 0
+    }
+    if (nspc > 255) {
+        nspc = 255
+    }
+    let bpm = nspc_to_bpm(nspc)
+    bpm_value.value = bpm.toString()
+    bpm_out_int.innerHTML = Math.round(bpm).toString()
+    nspc_out_int.innerHTML = Math.round(nspc).toString()
+    nspc_out_hex.innerHTML = `0x${Math.round(nspc).toString(16).padStart(2, "0").toUpperCase()}`
+    nspc_out_opc.innerHTML = `[E7 ${Math.round(nspc).toString(16).padStart(2, "0").toUpperCase()}]`
+})
+</script>

@@ -1,0 +1,27 @@
+---
+const { text, HeaderType='h3' } = Astro.props;
+---
+<HeaderType class="ruletitle">
+    <div class="ruletitletext" set:html={text}></div>
+    <div class="ruletitleline" />
+</HeaderType>
+<style>
+.ruletitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+}
+
+.ruletitletext {
+    flex-grow: 0;
+}
+
+.ruletitleline {
+    flex-grow: 1;
+    margin-left: 1%;
+    height: 1px;
+    background-color: var(--ebgrey);
+}
+</style>

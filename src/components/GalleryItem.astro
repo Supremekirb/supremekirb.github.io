@@ -1,0 +1,43 @@
+---
+import LilBox from "/src/components/LilBox.astro"
+const { src, artist, url, comment } = Astro.props;
+---
+<LilBox class="gallery-item">
+    <img src={src}>
+    <LilBox class="gallery-hover">
+        <p>
+            Artist: { url ? <a href={url}>{artist}</a> : artist }
+            { comment && <br> }
+            { comment }
+        </p>
+    </LilBox>
+</LilBox>
+<style>
+.gallery-item {
+    margin: 10px;
+    position: relative;
+    display: flex;
+}
+.gallery-item img {
+    width: 100%;
+    max-width: 15em;
+    margin: auto;
+}
+.gallery-hover {
+    visibility: hidden;
+    background-color: var(--ebbg);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    border-radius: 5px;
+    border: none;
+    width: max-content;
+    margin: -5px;
+    padding: 10px;
+}
+.gallery-item:hover .gallery-hover {
+    visibility: visible
+}
+</style>

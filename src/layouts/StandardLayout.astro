@@ -1,0 +1,52 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import BigBox from "../components/BigBox.astro"
+
+const { title, image, credit, height, headArgs } = Astro.props
+---
+<BaseLayout headArgs={headArgs}>
+    <BigBox title={title} image={image} credit={credit} height={height} slot="before-content" />
+    <br slot="before-content">
+    <slot />
+</BaseLayout>
+<script>
+if (document.getElementById("quote") != null) {
+  let quote = document.getElementById("quote").innerHTML
+  writeQuote("quote", quote);
+}
+
+function writeQuote(elementId, quote, index = 0) {
+  const textSpeed = 25; // default delay between printing characters
+  let delay = 0; // extra delay for full stops, commas, etc. Will be set later if necessary
+  let quoteWritten = quote.slice(0, index)
+  let quoteRemaining = quote.substring(index + 1)
+  let nextChar = quote.charAt(index);
+
+  if (index < quote.length) {
+    // for <br> tags if needed
+    if (nextChar == "<") {
+      quoteWritten += "<br>";
+      index += 4;
+    }
+    // delay for commas
+    if (nextChar == ",") {
+      delay = 100;
+    }
+    // delay for stops
+    if (nextChar == "." || nextChar == "!" || nextChar == "?") {
+      if (quote.charAt(index + 1) == ")" || quote.charAt(index + 1) == "”") {
+        quoteWritten += nextChar
+        index += 1;
+      }
+      delay = 166;
+    }
+
+    quoteWritten += quote.charAt(index);
+    quoteRemaining = quote.substring(index + 1);
+    document.getElementById(elementId).innerHTML = `<span style=\"color:unset\">${quoteWritten}</span><span style=\"color:#00000000\">${quoteRemaining}</span>`;
+    index++;
+    // recursion
+    setTimeout(() => { writeQuote(elementId, quote, index) }, textSpeed + delay, elementId, quote, index);
+  }
+}
+</script>

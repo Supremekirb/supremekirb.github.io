@@ -1,0 +1,65 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro"
+import LilBox from "/src/components/LilBox.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+import Gallery from "/src/components/Gallery.astro"
+import GalleryItem from "/src/components/GalleryItem.astro"
+---
+<StandardLayout title="•Dragon!!!!!!!!!!!!!!!!!!">
+    <div id="expandimg" />
+    <LilBox legend="Dragon time" hgrow>
+        <h1>Bit</h1>
+        <em>(they/them)</em>
+        <p>
+            My fursona, this silly dragon :3
+            <br>
+            I don't want to be forced to stick to a very specific look, so details aren't important!
+        </p>
+        <RuleTitle text="Artwork Gallery" HeaderType=h2 />
+        <p>Hover over an image to see details and click to expand it. Ordered from newest to oldest, and not exhaustive!</p>
+        <noscript>JS must be enabled to expand images!</noscript>
+        <Gallery>
+            <GalleryItem src="/images/gayass-derg/goodra.png" artist="circlegirl" url="https://tumblr.com/circlegirl" comment="Commissioned" />
+            <GalleryItem src="/images/gayass-derg/pfp.png" artist="me" comment="Drawn as a profile picture" />
+            <GalleryItem src="/images/gayass-derg/chalky.png" artist="me" />
+            <GalleryItem src="/images/gayass-derg/basically.png" artist="circlegirl" url="https://tumblr.com/circlegirl" comment="Gift" />
+            <GalleryItem src="/images/gayass-derg/laptop.png" artist="me" comment="On this site's footer" />
+            <GalleryItem src="/images/gayass-derg/sleepy.png" artist="me" comment="On this site's 404 page" />
+            <GalleryItem src="/images/gayass-derg/lineless.png" artist="me" />
+            <GalleryItem src="/images/gayass-derg/bigsadeyes.png" artist="me" comment="Drawn as an emote" />
+            <GalleryItem src="/images/gayass-derg/tail.png" artist="me" />
+            <GalleryItem src="/images/gayass-derg/bit-circle.png" artist="circlegirl" url="https://tumblr.com/circlegirl" comment="Gift" />
+            <GalleryItem src="/images/gayass-derg/ref.png" artist="pkmnsilvy" url="https://tumblr.com/pkmnsilvy" comment="Birthday gift commissioned by Cyan" />
+            <GalleryItem src="/images/gayass-derg/first.png" artist="me" comment="First digital doodle of Bit" />
+        </Gallery>
+    </LilBox>
+</StandardLayout>
+<style>
+#expandimg {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat no-repeat;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+</style>
+<script>
+const images = document.querySelectorAll(".gallery-item img")
+const expandimg = document.querySelector("#expandimg");
+
+images.forEach(img => {
+  img.addEventListener('click', function () {
+    expandimg.style.backgroundImage = 'url(' + img.src + ')';
+    expandimg.style.display = 'block';
+  }
+  )
+})
+
+expandimg.addEventListener('click', function () { this.style.display='none' } )
+</script>

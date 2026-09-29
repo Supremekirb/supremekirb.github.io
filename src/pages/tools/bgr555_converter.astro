@@ -1,0 +1,118 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro"
+import ToolsPreamble from "/src/components/ToolsPreamble.astro"
+import LilBox from "/src/components/LilBox.astro"
+---
+<StandardLayout title="•BGR555 Colour Converter">
+    <LilBox hgrow legend="BGR555 Converter">
+        <ToolsPreamble />
+        <p>
+            This tool converts between everyday colour formats and the Super NES's BGR555 format.
+            Where the modern RGB format gives every colour channel an 8-bit range of 0-255,
+            the BGR555 format only has 5 bits per colour giving a range of 0-31.
+            This is so it can fit in the SNES's word length of 16 bits.
+        </p>
+        <div style="display: flex; flex-wrap: wrap;">
+            <LilBox>
+                <h3>Normal colour format</h3>
+                <input type="color" id="normal" value="#000000">
+                <input type="text" id="html-code" value="#000000" placeholder="Hex code">
+            </LilBox>
+            <LilBox>
+                <h3>BGR555 colour format</h3>
+                <input type="text" id="bgr555" value="0x0000" placeholder="BGR555 value (hex)">
+                <br>
+                <label style="user-select: none;"><input type="checkbox" id="extra-bit">Set <abbr title="Since each channel only takes 5 bits, the 16th bit is ignored by the hardware. Software might encode something in it.">unused 16th bit</abbr></label>
+            </LilBox>
+        </div>
+    </LilBox>
+</StandardLayout>
+<script>
+function colour_to_bgr555(col) {
+  let r = ((col & 0xFF0000) >> 16) >> 3
+  let g = ((col & 0x00FF00) >> 8) >> 3
+  let b = (col & 0x0000FF) >> 3
+  return (b << 10) | (g << 5) | r
+}
+
+function bgr555_to_colour(col) {
+  let r = (col & 0b00000_00000_11111) << 3
+  let g = ((col & 0b00000_11111_00000) >> 5) << 3
+  let b = ((col & 0b11111_00000_00000) >> 10) << 3
+  return (r << 16) | (g << 8) | b
+}
+
+function hexify(i) {
+  return "0x" + i.toString(16).padStart(4, "0").toUpperCase()
+}
+
+function decify(s) {
+  if (s === "") { return null }
+  s = s.replace("0x", "").replace("$", "")
+  try {
+    return parseInt(s, 16)
+  } catch {
+    return null
+  }
+}
+
+const normal = document.getElementById("normal")
+const bgr555 = document.getElementById("bgr555")
+const extra_bit = document.getElementById("extra-bit")
+const html_code = document.getElementById("html-code")
+
+normal.addEventListener('input', function (event) {
+  let colour = parseInt(event.target.value.slice(1), 16)
+  if (isNaN(colour)) {
+    brg555.value = null
+    return
+  }
+  let bgr = colour_to_bgr555(colour)
+  if (extra_bit.checked) {
+    // Set the unused bit
+    bgr |= 1 << 15
+  }
+  bgr555.value = hexify(bgr)
+  html_code.value = event.target.value.toUpperCase()
+})
+
+bgr555.addEventListener('input', function (event) {
+  let colour = decify(event.target.value)
+  if (colour === null) {
+    return
+  }
+  extra_bit.checked = colour & (1 << 15)
+  colour = bgr555_to_colour(colour).toString(16)
+  normal.value = "#" + colour.padStart(6, 0)
+  html_code.value = "#" + colour.padStart(6, 0).toUpperCase()
+})
+
+extra_bit.addEventListener('input', function (event) {
+  let colour = decify(bgr555.value)
+  if (colour === null) {
+    return
+  }
+  if (event.target.checked) {
+    colour |= 1 << 15
+  } else {
+    colour &= 0x7FFF
+  }
+  bgr555.value = hexify(colour)
+})
+
+html_code.addEventListener('input', function (event) {
+  if (event.target.value.match(/^#[0-9a-fA-F]{6}$/gm)) {
+    normal.value = event.target.value
+    let colour = parseInt(event.target.value.slice(1), 16)
+    let bgr = colour_to_bgr555(colour)
+    if (extra_bit.checked) {
+      // Set the unused bit
+      bgr |= 1 << 15
+    }
+    bgr555.value = hexify(bgr)
+  } else {
+    normal.value = "#000000"
+    bgr555.value = null
+  }
+})
+</script>
