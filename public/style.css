@@ -40,41 +40,10 @@ body {
     font-family: Motherish;
 }
 
-html {
-    height: 100%;
-    background: linear-gradient(-45deg, var(--bg1), var(--bg1) 25%, var(--bg2) 25%, var(--bg2) 50%, var(--bg1) 50%, var(--bg1) 75%, var(--bg2) 75%, var(--bg2) 100%, var(--bg1) 100%);
-    background-size: 400px 400px;
-    animation: blitz-gradient 30s linear reverse infinite;
-    background-attachment: fixed;
-}
-
-body {
-    background: 
-        linear-gradient(to top right, rgba(149, 0, 255, 0.113) 0%, rgba(0, 0, 0, 0) 80%),
-        linear-gradient(to bottom left, rgba(255, 102, 0, 0.113) 0%, rgba(0, 0, 0, 0) 80%);
-    background-attachment: fixed;
-    min-height: 100%;
-}
-
-@keyframes blitz-gradient { /* 10 points to you if you can guess why it's called that */
-    100% {
-        background-position: 400px 400px;
-    }
-}
-
 
 p {
     line-height: 1.5rem;
 }
-
-
-#main {
-    width: 80%;
-    margin: auto;
-    padding: 10px;
-    padding-top: 50px;
-}
-
 
 /* EB borders */
 
@@ -137,16 +106,6 @@ legend {
     font-family: Motherish;
 }
 
-#navmaster {
-    border-radius: 0;
-    border: none;
-    margin-bottom: 7px;
-    margin-left: -3px;
-    position: fixed;
-    width: 100%;
-    box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg);
-}
-
 a {
     color: var(--cpurple);
 }
@@ -191,10 +150,6 @@ input {
     font-family: var(--font-mono)
 }
 
-#eb-rom-in {
-    display: none;
-}
-
 .fileupload {
     box-shadow: 0 0 0 3px var(--ebgrey), 0 0 0 6px var(--ebwhite), 0 0 0 9px var(--ebgrey), 0 0 0 10px var(--ebbg);
     border-radius: 5px;
@@ -222,91 +177,8 @@ img {
 .icon {
     height: 20px;
     width: 20px;
-    margin-top: -3px;
+    margin-top: -1px;
     /* center aligns */
-}
-
-#contentblock {
-    display: flex;
-    gap: 5%;
-    /* padding: 1%*/
-}
-
-@media(max-width: 991px) {
-    #contentblock {
-        display: block;
-    }
-}
-
-#contentmain {
-    flex: 75%;
-    display: flex;
-    flex-direction: column;
-    margin: 0%;
-}
-
-/* make it 100% of width on mobile devices */
-@media(max-width: 991px) {
-    #contentmain {
-        flex: 100%;
-    }
-}
-
-#sidebar {
-    flex: 15%;
-    /* display: flex; */
-    /* flex-grow: 0; */
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-}
-
-/* not sticky on mobile devices */
-@media(max-width: 991px) {
-    #sidebar {
-        position: unset;
-    }
-}
-
-/* make it hidden on mobile devices */
-/* @media(max-width: 991px) {
-    #sidebar {
-        display: none;
-    }
-} */
-
-.hgrow {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-a.t88x31,
-a.t88x31:hover,
-a.t88x31:active {
-    text-decoration: none;
-    background-color: inherit;
-    cursor: pointer;
-}
-
-a.t88x31 img {
-    image-rendering: optimizeSpeed;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: pixelated;
-    image-rendering: optimize-contrast;
-    -ms-interpolation-mode: nearest-neighbor;
-    transition: transform 0.06s;
-    width: 176px;
-    height: 62px;
-}
-
-a.t88x31 img:active {
-    transform: scale(0.9, 0.9);
-}
-
-.t88x31-box-sidebar {
-    text-align: center;
 }
 
 @media(max-width: 991px) {
@@ -344,11 +216,6 @@ a.t88x31 img:active {
 @keyframes anim-burst-alt { 
     0% { transform: scale(1.5, 1.5); };
     100% { transform: scale(1, 1); };
-}
-
-/* unhidden by JS */
-.patch-info {
-    display: none;
 }
 
 .flex-half-box {

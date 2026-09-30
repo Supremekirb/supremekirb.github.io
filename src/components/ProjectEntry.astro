@@ -19,28 +19,28 @@ const { title, image_src, links=[] } = Astro.props;
     </div>
 </div>
 <style>
+.project-entry {
+    display: flex;
+    gap: 5%;
+    padding: 1%;
+}
+@media(max-width: 991px) {
     .project-entry {
-        display: flex;
-        gap: 5%;
-        padding: 1%;
+        display: block;
     }
-    @media(max-width: 991px) {
-        .project-entry {
-            display: block;
-        }
+}
+.project-text, .project-image {
+    flex: 50%;
+}    
+@media(max-width: 991px) {
+    .content-desktop {
+        display: none;
     }
-    .project-text, .project-image {
-        flex: 50%;
-    }    
-    @media(max-width: 991px) {
-        .content-desktop {
-            display: none;
-        }
+}
+
+@media(min-width: 991px) {
+    .content-mobile {
+        display: none;
     }
-    
-    @media(min-width: 991px) {
-        .content-mobile {
-            display: none;
-        }
-    }
+}
 </style>

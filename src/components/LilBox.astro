@@ -6,3 +6,9 @@ const { legend, hgrow, class: className, ...rest } = Astro.props;
     { legend && <legend>{legend}</legend> }
     <slot />
 </fieldset>
+<style>
+.hgrow {
+    width: 100%;
+    box-sizing: border-box;
+}
+</style>

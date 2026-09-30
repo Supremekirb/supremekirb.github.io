@@ -1,6 +1,7 @@
 ---
 import StandardLayout from "/src/layouts/StandardLayout.astro";
 import LilBox from "/src/components/LilBox.astro";
+import PatchInfo from "/src/components/PatchInfo.astro";
 ---
 <StandardLayout title="•Play My Video Games, White Child">
     <LilBox hgrow legend="ROM Patcher">
@@ -60,11 +61,7 @@ import LilBox from "/src/components/LilBox.astro";
             </div>
             
             <div class="flex-half">
-                <div id="info-earthground" class="patch-info">
-                    <fieldset class="imgbox" style="width: 50%">
-                        <img src="/images/earthground.png" style="width:100%">
-                    </fieldset>
-                    <h3>EarthGround</h3>
+                <PatchInfo id="info-earthground" title="EarthGround" image="/images/earthground.png">
                     <p>
                         Turns EarthBound into a platformer by rewriting the player movement code!
                         You can play the entire game from start to finish.
@@ -73,13 +70,8 @@ import LilBox from "/src/components/LilBox.astro";
                         <br>
                         (NOTE: Don't press directions during cutscenes.)
                     </p>
-                </div>
-                
-                <div id="info-trialtower" class="patch-info">
-                    <fieldset class="imgbox" style="width: 50%">
-                        <img src="/images/ebtrialtower.png" style="width:100%">
-                    </fieldset>
-                    <h3>EarthBound Trial Tower</h3>
+                </PatchInfo>
+                <PatchInfo id="info-trialtower" title="EarthBound Trial Tower" image="/images/ebtrialtower.png">
                     <p>
                         A hack that turns the game into a roguelike! Choose a character and scale the Monotoli Building,
                         fighting 100 back-to-back battles, while choosing upgrades and perks to
@@ -87,33 +79,23 @@ import LilBox from "/src/components/LilBox.astro";
                         <br>
                         Made in a couple weeks for Jank Jam 2.
                     </p>
-                </div>
-                
-                <div id="info-ticketmaster" class="patch-info">
-                    <fieldset class="imgbox" style="width: 50%">
-                        <img src="/images/ticketmaster.png" style="width:100%">
-                    </fieldset>
-                    <h3>Ticketmaster</h3>
+                </PatchInfo>
+                <PatchInfo id="info-ticketmaster" title="TicketMaster" image="/images/ticketmaster.png">
                     <p>
                         Battle enemies with new real-time action commands in order to win the Starstruck Sweepstakes!
                         Spend tickets to get gear, items, and special moves, and fight a few secret bosses along the way.
                         <br>
                         Made with Chalkmuncher in a couple weeks for Jank Jam 3.
                     </p>
-                </div>
-                
-                <div id="info-m3prologue" class="patch-info">
-                    <fieldset class="imgbox" style="width: 50%">
-                        <img src="/images/mother3.png" style="width:100%">
-                    </fieldset>
-                    <h3>MOTHER 3 Prologue Recreation</h3>
+                </PatchInfo>
+                <PatchInfo id="info-m3prologue" title="MOTHER 3 Prologue Recreation" image="/images/mother3.png">
                     <p>
                         This hack recreates a portion of MOTHER 3's prologue as accurately as possible.
                         There's no music, though.
                         <br>
                         This was made for Starmen.net's MOTHER 3 17th Anniversary Funfest.
                     </p>
-                </div>
+                </PatchInfo>
             </div>
         </div>
         <p>
@@ -124,65 +106,65 @@ import LilBox from "/src/components/LilBox.astro";
 <script type="text/javascript" src="/games/rom-patcher-js/RomPatcher.webapp.js"></script>
 <link type="text/css" rel="stylesheet" href="/games/rom-patcher-js/style.css" media="all" />
 <script type="text/javascript">
-    const FILENAMES_TO_ID = {
-      "1 earthground_1_0.bps": "earthground",
-      "2 ebtrialtower_0_2.bps": "trialtower",
-      "3 ticketmaster_1_1.bps": "ticketmaster",
-      "4 eb_m3_prologue_0_1.bps": "m3prologue"
-    }
-    const IDS_TO_FILENAME = {
-      "earthground": "1 earthground_1_0.bps",
-      "trialtower": "2 ebtrialtower_0_2.bps",
-      "ticketmaster": "3 ticketmaster_1_1.bps",
-      "m3prologue": "4 eb_m3_prologue_0_1.bps"
-    }
-    window.addEventListener('load', async function(){
-        const patcherSettings={
-            language: 'en',
-            requireValidation: true, /* if true, user won't be able to apply patch if the provided ROM is not valid*/
-            allowDropFiles: true, /* if true, it adds basic drag and drop support */
-            oninitialize: function (romFile) {
-              const patch = new URLSearchParams(window.location.search).get("patch")
-              if (patch in IDS_TO_FILENAME) {
-                RomPatcherWeb.pickEmbededFile(IDS_TO_FILENAME[patch])
-              }
-            },
-            onloadpatch: function (patchFile, info) {
-              for (const el of document.getElementsByClassName("patch-info")) {
-                if (el.id === "info-" + FILENAMES_TO_ID[info.file]) {
-                  el.style.display = "block";
-                } else {
-                  el.style.display = "none"
-                }
-              }
+const FILENAMES_TO_ID = {
+  "1 earthground_1_0.bps": "earthground",
+  "2 ebtrialtower_0_2.bps": "trialtower",
+  "3 ticketmaster_1_1.bps": "ticketmaster",
+  "4 eb_m3_prologue_0_1.bps": "m3prologue"
+}
+const IDS_TO_FILENAME = {
+  "earthground": "1 earthground_1_0.bps",
+  "trialtower": "2 ebtrialtower_0_2.bps",
+  "ticketmaster": "3 ticketmaster_1_1.bps",
+  "m3prologue": "4 eb_m3_prologue_0_1.bps"
+}
+window.addEventListener('load', async function(){
+    const patcherSettings={
+        language: 'en',
+        requireValidation: true, /* if true, user won't be able to apply patch if the provided ROM is not valid*/
+        allowDropFiles: true, /* if true, it adds basic drag and drop support */
+        oninitialize: function (romFile) {
+          const patch = new URLSearchParams(window.location.search).get("patch")
+          if (patch in IDS_TO_FILENAME) {
+            RomPatcherWeb.pickEmbededFile(IDS_TO_FILENAME[patch])
+          }
+        },
+        onloadpatch: function (patchFile, info) {
+          for (const el of document.getElementsByClassName("patch-info")) {
+            if (el.id === "info-" + FILENAMES_TO_ID[info.file]) {
+              el.style.display = "block";
+            } else {
+              el.style.display = "none"
             }
-        };
-        RomPatcherWeb.initialize(patcherSettings, {
-        file: "/games/patcher/patches.zip",
-        patches: [
-            {
-                file: "1 earthground_1_0.bps",
-                name: "EB | EarthGround (v1.0)",
-                outputName: "earthground_1_0",
-            },
-            {
-                file: "2 ebtrialtower_0_2.bps",
-                name: "EB | EarthBound Trial Tower (v0.2)",
-                outputName: "ebtrialtower_0_2",
-            },
-            {
-                file: "3 ticketmaster_1_1.bps",
-                name: "EB | Ticketmaster (v1.1)",
-                outputName: "ticketmaster_1_1",
-                id: "ticketmaster"
-            },
-            {
-                file: "4 eb_m3_prologue_0_1.bps",
-                name: "EB | MOTHER 3 Prologue Recreation (v0.1)",
-                outputName: "eb_m3_prologue_0_1",
-                id: "m3-prologue"
-            },
-        ]
-        });
+          }
+        }
+    };
+    RomPatcherWeb.initialize(patcherSettings, {
+    file: "/games/patcher/patches.zip",
+    patches: [
+        {
+            file: "1 earthground_1_0.bps",
+            name: "EB | EarthGround (v1.0)",
+            outputName: "earthground_1_0",
+        },
+        {
+            file: "2 ebtrialtower_0_2.bps",
+            name: "EB | EarthBound Trial Tower (v0.2)",
+            outputName: "ebtrialtower_0_2",
+        },
+        {
+            file: "3 ticketmaster_1_1.bps",
+            name: "EB | Ticketmaster (v1.1)",
+            outputName: "ticketmaster_1_1",
+            id: "ticketmaster"
+        },
+        {
+            file: "4 eb_m3_prologue_0_1.bps",
+            name: "EB | MOTHER 3 Prologue Recreation (v0.1)",
+            outputName: "eb_m3_prologue_0_1",
+            id: "m3-prologue"
+        },
+    ]
     });
+});
 </script>

@@ -16,5 +16,5 @@ const posts = await getCollection('blog');
           { name: "Feed (of) the dragon", url: "/blog/feed.xml", icon: "https://cdn.simpleicons.org/rss/white?viewbox=auto" }
         ]} />
     </LilBox>
-    {posts.map((post) => <BlogPost url=`/blog/posts/${post.id}` title={post.data.title} description={post.data.description} date={post.data.pubDate.toLocaleDateString()} />)}
+    {posts.map((post) => <BlogPost url=`/blog/posts/${post.id}` title={post.data.title} description={post.data.description} date={post.data.pubDate.toISOString().split('T')[0]} />)}
 </StandardLayout>

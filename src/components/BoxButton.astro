@@ -3,22 +3,22 @@ const { url, icon, text } = Astro.props;
 ---
 <a class="boxbutton" href={url}>{icon && <img class="icon" src={icon}>}{icon && " "}{text}</a>
 <style>
-    a {
-        background-color: var(--ebbg);
-        border-radius: 5px;
-        border: none;
-        padding: 5px;
-        color: var(--ebwhite);
-        text-decoration: none;
-        padding-top: 10px;
-        margin: 10px 12px;
-    }
-    
-    a:visited {
-        color: var(--ebwhite)
-    }
-    
-    a:hover {
-        background-color: var(--ebpurple);
+a {
+    background-color: var(--ebbg);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: var(--ebwhite);
+    text-decoration: none;
+    padding-top: 10px;
+    margin: 10px 12px;
+}
+
+a:visited {
+    color: var(--ebwhite)
+}
+
+a:hover {
+    background-color: var(--ebpurple);
     }
 </style>

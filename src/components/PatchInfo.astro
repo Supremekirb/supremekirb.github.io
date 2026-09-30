@@ -1,0 +1,13 @@
+---
+import RuleTitle from "/src/components/RuleTitle.astro";
+
+const { title, id, image } = Astro.props;
+---
+<div id={id} style="display: none;" class="patch-info">
+    <fieldset class="imgbox" style="width: 50%">
+        <img src={image} style="width: 100%;">
+    </fieldset>
+    <br>
+    <RuleTitle text={title} />
+    <slot />
+</div>

@@ -26,3 +26,20 @@ import T88x31 from "/src/components/T88x31.astro"
         </div>
     </LilBox>
 </div>
+<style>
+#sidebar {
+    flex: 15%;
+    /* display: flex; */
+    /* flex-grow: 0; */
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+/* not sticky on mobile devices */
+@media(max-width: 991px) {
+    #sidebar {
+        position: unset;
+    }
+}
+</style>
