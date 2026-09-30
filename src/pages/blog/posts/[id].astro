@@ -16,11 +16,20 @@ const { Content } = await render(post);
 
 ---
 <StandardLayout title=`•${post.data.title}` headArgs={{ title: `${post.data.title} - Kirb's blog`, description: post.data.description}}>
-    <LilBox legend={post.data.pubDate.toISOString().split('T')[0]}>
+    <LilBox hgrow legend={post.data.pubDate.toISOString().split('T')[0]}>
         <a href="/blog">&lt; Back to blog index</a>
-        <div class="text-article">
+        <div class="text-article blog-post">
             <RuleTitle text={post.data.title} HeaderType=h1 />
             <Content />
         </div>
     </LilBox>
 </StandardLayout>
+<style is:inline>
+.blog-post img {
+    /* stytling to make images resize to fit properly */
+    max-width: 100%;
+    max-height: 100%;
+    width: unset;
+    height: unset;
+}
+</style>

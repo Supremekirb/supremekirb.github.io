@@ -1,5 +1,5 @@
 ---
-const { title="Kirb's corner", image, description="Dragons, programming, and art" } = Astro.props;
+const { title="Kirb's corner", image="/favicon/favicon-96x96.png", description="Dragons, programming, and art" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <head>
@@ -19,5 +19,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description}>
     <meta property="og:url" content={canonicalURL}>
     <meta property="og:type" content="website">
-    {image && <meta property="og:image" content={image}>}
+    <meta name="theme-color" content="#b38ef2">
+    <meta property="og:image" content={image}>
 </head>
