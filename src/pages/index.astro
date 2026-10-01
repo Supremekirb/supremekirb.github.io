@@ -2,7 +2,7 @@
 import BaseLayout from "/src/layouts/BaseLayout.astro";
 import LilBox from "/src/components/LilBox.astro";
 import BoxButtonGroup from "/src/components/BoxButtonGroup.astro";
-import Gallery from "/src/components/Gallery.astro";
+import GalleryFlex from "/src/components/GalleryFlex.astro";
 import HoverImgLink from "/src/components/HoverImgLink.astro"
 import T88x31 from "/src/components/T88x31.astro"
 import RuleTitle from "/src/components/RuleTitle.astro"
@@ -38,11 +38,11 @@ import RuleTitle from "/src/components/RuleTitle.astro"
             <img src="/images/gayass-derg/homepage_bg_above.png" style="position: absolute; z-index:  1; width: 40vw; right: -7vw; top: -24vw; user-select: none; pointer-events: none;">
         </div>
         <LilBox hgrow legend="Quick navigation">
-            <Gallery>
+            <GalleryFlex>
                 <HoverImgLink href="/projects" src="/images/gayass-derg/homepage_stuff.png" src2="/images/gayass-derg/homepage_stuff_hover.png" />
                 <HoverImgLink href="/tools" src="/images/gayass-derg/homepage_tools.png" src2="/images/gayass-derg/homepage_tools_hover.png" />
                 <HoverImgLink href="/blog" src="/images/gayass-derg/homepage_blog.png" src2="/images/gayass-derg/homepage_blog_hover.png" />
-            </Gallery>
+            </GalleryFlex>
         </LilBox>
     </div>
     <LilBox hgrow legend="88x31">

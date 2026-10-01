@@ -2,7 +2,7 @@
 import StandardLayout from "/src/layouts/StandardLayout.astro"
 import LilBox from "/src/components/LilBox.astro"
 import RuleTitle from "/src/components/RuleTitle.astro"
-import Gallery from "/src/components/Gallery.astro"
+import GalleryGrid from "/src/components/GalleryGrid.astro"
 import GalleryItem from "/src/components/GalleryItem.astro"
 ---
 <StandardLayout title="•Dragon!!!!!!!!!!!!!!!!!!">
@@ -18,7 +18,9 @@ import GalleryItem from "/src/components/GalleryItem.astro"
         <RuleTitle text="Artwork Gallery" HeaderType=h2 />
         <p>Hover over an image to see details and click to expand it. Ordered from newest to oldest, and not exhaustive!</p>
         <noscript>JS must be enabled to expand images!</noscript>
-        <Gallery>
+        <GalleryGrid>
+            <GalleryItem src="/images/gayass-derg/neckfluff.png" artist="me" />
+            <GalleryItem src="/images/gayass-derg/aura.png" artist="me" comment="Drawover" />
             <GalleryItem src="/images/gayass-derg/goodra.png" artist="circlegirl" url="https://tumblr.com/circlegirl" comment="Commissioned" />
             <GalleryItem src="/images/gayass-derg/pfp.png" artist="me" comment="Drawn as a profile picture" />
             <GalleryItem src="/images/gayass-derg/chalky.png" artist="me" />
@@ -31,7 +33,7 @@ import GalleryItem from "/src/components/GalleryItem.astro"
             <GalleryItem src="/images/gayass-derg/bit-circle.png" artist="circlegirl" url="https://tumblr.com/circlegirl" comment="Gift" />
             <GalleryItem src="/images/gayass-derg/ref.png" artist="pkmnsilvy" url="https://tumblr.com/pkmnsilvy" comment="Birthday gift commissioned by Cyan" />
             <GalleryItem src="/images/gayass-derg/first.png" artist="me" comment="First digital doodle of Bit" />
-        </Gallery>
+        </GalleryGrid>
     </LilBox>
 </StandardLayout>
 <style>
