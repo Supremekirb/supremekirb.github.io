@@ -1,0 +1,275 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro"
+import LilBox from "/src/components/LilBox.astro"
+---
+<StandardLayout title="•Tail">
+    <div style="text-align: center">
+        <canvas id="canvas" width=800 height=800></canvas>
+    </div>
+</StandardLayout>
+<style>
+canvas {
+    border: 1px solid white;
+    max-width: 100%
+}
+</style>
+<script>
+// Config //
+const IMAGE_SRC = "/images/gayass-derg/chalky_notail.png"
+const IMAGE_W = 250
+const IMAGE_H = 270
+// Offset for the image from top-left. The tail will draw from this point
+const OFFSET_X = 150
+const OFFSET_Y = 170
+// Canvas dimensions. Keep it matching the element
+const WIDTH = 800
+const HEIGHT = 800
+// Amount of tail segments. More = longer
+const SEGMENTS = 50
+// Distance between tail segments. Less = closer together, but higher quality
+const SEGMENT_DISTANCE = 4
+// How stretchy it is. Must be >1, too close to 1 can cause issues
+const STRETCHINESS = 1.2
+// How stiff it is. Actually the amount of rope integration steps in a tick
+// Can be weird if too low. About 5 is minimum
+const STIFFNESS = 10
+// How bouncy hitting the edge of the screen is. 0<=n<=1
+const BOUNCINESS = 0.8
+// Vertical gravity (if you want to add X force, check the code)
+const GRAVITY = 0.8
+// Main colour of the tail
+const COLOUR = "#D1A9F0"
+// Base tail thickness
+const TAIL_BASE_SIZE = 20
+// The tail will grow from base size up to base size + this, then taper back to base size
+const TAIL_SHAPE_FACTOR = 150
+
+class Vec2 {
+  constructor(x=0, y=0) {
+    this.x = x
+    this.y = y
+  }
+  distanceTo(other) {
+    const dx = this.x - other.x
+    const dy = this.y - other.y
+    return Math.sqrt(dx*dx + dy*dy)
+  }
+}
+
+class Point {
+  constructor(pos, fixed) {
+    this.pos = new Vec2(pos.x, pos.y)
+    this.oldPos = new Vec2(pos.x, pos.y)
+    this.fixed = fixed
+  }
+  
+  solve(force, w=0, h=0) {
+    if (this.fixed) { return }
+    
+    let vel = new Vec2(this.pos.x - this.oldPos.x, this.pos.y - this.oldPos.y)
+    this.oldPos.x = this.pos.x
+    this.oldPos.y = this.pos.y
+    
+    vel.x += force.x
+    vel.y += force.y
+    
+    this.pos.x += vel.x
+    this.pos.y += vel.y
+    
+    this.constrain(WIDTH, HEIGHT, w, h)
+  }
+  
+  constrain(w, h, eX=0, eY=0) {
+    if (this.pos.x < 0) {
+      this.pos.x = 0;
+      this.oldPos.x = this.pos.x + (this.pos.x - this.oldPos.x) * BOUNCINESS;
+    }
+    if (this.pos.x > w - eX) {
+      this.pos.x = w - eX;
+      this.oldPos.x = this.pos.x + (this.pos.x - this.oldPos.x) * BOUNCINESS;
+    }
+    if (this.pos.y > h - eY) {
+      this.pos.y = h - eY;
+      this.oldPos.y = this.pos.y + (this.pos.y - this.oldPos.y) * BOUNCINESS;
+    }
+  }
+}
+
+class Line {
+  constructor(a, b) {
+    this.a = a
+    this.b = b
+    this.targetDistance = SEGMENT_DISTANCE
+  }
+  
+  solve() {
+    const dx = this.b.pos.x - this.a.pos.x
+    const dy = this.b.pos.y - this.a.pos.y
+    const dist = this.a.pos.distanceTo(this.b.pos) || 0.00001 // so as not to get div0 errors
+    const dir = new Vec2(dx/dist, dy/dist)
+    const delta = dist - this.targetDistance
+    const ox = (delta * dir.x) / STRETCHINESS
+    const oy = (delta * dir.y) / STRETCHINESS
+    if (!this.a.fixed) {
+      this.a.pos.x += ox
+      this.a.pos.y += oy
+    }
+    if (!this.b.fixed) {
+      this.b.pos.x -= ox
+      this.b.pos.y -= oy
+    }
+  }
+}
+
+class Rope {
+  constructor(pos, segments) {
+    this.points = []
+    this.lines = []
+    for (let i=0; i <= segments; i++) {
+      let point = new Point(new Vec2(pos.x, pos.y))
+      this.points.push(point)
+    }
+    this.points[0].fixed = true
+    
+    for (let i=0; i < segments; i++) {
+      let line = new Line(this.points[i], this.points[i+1])
+      this.lines.push(line)
+    }
+  }
+  
+  solve() {
+    for (const p of this.points) {
+      p.solve(gravity);
+    }
+    for (let i = 0; i < STIFFNESS; i++) {
+      for (const l of this.lines) {
+        l.solve();
+      }
+      for (const p of this.points) {
+        p.constrain(WIDTH, HEIGHT);
+      }
+    }
+  }
+  
+  draw(ctx) {
+    ctx.strokeStyle = ctx.fillStyle = COLOUR
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    for (let i=0; i < this.lines.length; i++) {
+      ctx.beginPath()
+      // tail starts at a decent thickness, gets larger, then tapers to a point
+      ctx.lineWidth = TAIL_SHAPE_FACTOR * Math.sin((Math.PI*(i - this.lines.length*2.2)) / (this.lines.length*1.2)) + TAIL_BASE_SIZE
+      // draw clamping the position to the screen size accounting for line width
+      // (height is uncapped going up cause funny)
+      const aX = Math.min(Math.max(this.lines[i].a.pos.x, 0+ctx.lineWidth/2), WIDTH-ctx.lineWidth/2)
+      const aY = Math.min(this.lines[i].a.pos.y, HEIGHT-ctx.lineWidth/2)
+      const bX = Math.min(Math.max(this.lines[i].b.pos.x, 0+ctx.lineWidth/2), WIDTH-ctx.lineWidth/2)
+      const bY = Math.min(this.lines[i].b.pos.y, HEIGHT-ctx.lineWidth/2)
+      ctx.moveTo(aX, aY)
+      ctx.lineTo(bX, bY)
+      ctx.stroke()
+    }
+  }
+}
+
+let rope = new Rope(new Vec2(WIDTH/2, HEIGHT/2), SEGMENTS)
+let mousePos = new Vec2(WIDTH/2, HEIGHT/2)
+
+const canvas = document.getElementById("canvas")
+const context = canvas.getContext("2d")
+
+const gravity = new Vec2(0, GRAVITY)
+
+const image = new Image()
+image.src = IMAGE_SRC
+
+let imgPos = new Point(new Vec2(WIDTH/2 - IMAGE_W/2, HEIGHT/2 - IMAGE_H/2))
+let imgHoldOffset = new Vec2()
+let held = false
+
+let isMobile = false
+
+function getCanvasPos(event) {
+  const rect = canvas.getBoundingClientRect()
+  const pos = new Vec2()
+  pos.x = event.clientX - rect.left
+  pos.y = event.clientY - rect.top
+  return pos
+}
+
+function getTouchPos(event) {
+  const rect = canvas.getBoundingClientRect()
+  const pos = new Vec2()
+  pos.x = ((event.touches[0].clientX - rect.left) * event.target.width) / rect.width
+  pos.y = ((event.touches[0].clientY - rect.top) * event.target.height) / rect.height
+  return pos
+}
+
+canvas.addEventListener("mousedown", function (event) {
+  if (isMobile) { return }
+  // check if we're in the image bounds
+  mousePos = getCanvasPos(event)
+  if (mousePos.x >= imgPos.pos.x && mousePos.x <= imgPos.pos.x + IMAGE_W &&
+    mousePos.y >= imgPos.pos.y && mousePos.y <= imgPos.pos.y + IMAGE_H) {
+      held = true
+      imgHoldOffset = new Vec2(imgPos.pos.x - mousePos.x, imgPos.pos.y - mousePos.y)
+    }
+})
+
+canvas.addEventListener("mousemove", function (event) {
+  if (isMobile) { return }
+  mousePos = getCanvasPos(event)
+})
+
+canvas.addEventListener("mouseup", function (event) {
+  if (isMobile) { return }
+  held = false
+})
+
+canvas.addEventListener("touchstart", function (event) {
+  isMobile = true
+  mousePos = getTouchPos(event)
+  console.log(canvas.width)
+  console.log(mousePos)
+  if (mousePos.x >= imgPos.pos.x && mousePos.x <= imgPos.pos.x + IMAGE_W &&
+    mousePos.y >= imgPos.pos.y && mousePos.y <= imgPos.pos.y + IMAGE_H) {
+      held = true
+      imgHoldOffset = new Vec2(imgPos.pos.x - mousePos.x, imgPos.pos.y - mousePos.y)
+    }
+  event.preventDefault()
+})
+
+canvas.addEventListener("touchmove", function (event) {
+  mousePos = getTouchPos(event)
+  event.preventDefault()
+})
+
+canvas.addEventListener("touchend", function (event) {
+  held = false
+})
+
+function tick(t) {
+  // move image
+  imgPos.solve(gravity, IMAGE_W, IMAGE_H)
+  if (held) {
+    imgPos.pos.x = mousePos.x + imgHoldOffset.x
+    imgPos.pos.y = mousePos.y + imgHoldOffset.y
+  }
+  
+  // do rope physics
+  rope.points[0].pos.x = imgPos.pos.x + OFFSET_X
+  rope.points[0].pos.y = imgPos.pos.y + OFFSET_Y
+  rope.solve()
+  
+  // draw
+  context.clearRect(0, 0, WIDTH, HEIGHT)
+  rope.draw(context)
+  context.drawImage(image, imgPos.pos.x, imgPos.pos.y, IMAGE_W, IMAGE_H)
+  
+  setTimeout(() => {
+    requestAnimationFrame(tick)
+  }, 15)
+}
+
+requestAnimationFrame(tick)
+</script>
