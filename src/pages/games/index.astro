@@ -1,0 +1,181 @@
+---
+import StandardLayout from "/src/layouts/StandardLayout.astro";
+import LilBox from "/src/components/LilBox.astro";
+import RuleTitle from "/src/components/RuleTitle.astro"
+import Cuboid3D from "/src/components/Cuboid3D.astro"
+import RuleTitle from "/src/components/RuleTitle.astro"
+import BoxButton from "/src/components/BoxButton.astro"
+import GameCard from "/src/components/GameCard.astro"
+import GameInfo from "/src/components/GameInfo.astro"
+import BoxButtonGroup from "/src/components/BoxButtonGroup.astro"
+---
+<StandardLayout title="•My ludography">
+    <LilBox hgrow legend="Game Select">
+        <div class="grid">
+            <GameCard id="eb-trialtower" />
+            <GameCard id="ticketmaster" />
+            <GameCard id="kirbs_underwhelming_bowling" />
+            <GameCard id="earthground" />
+            <GameCard id="mother3" />
+            <GameCard id="raindrop" />
+            <GameCard id="tail" />
+        </div>
+        <div id="game-wrapper" style="display: flex; gap: 5px; flex-wrap: wrap; justify-content: center;">
+            <div id="game-display" style="flex: 2; align-self: center">
+                <Cuboid3D width="250px" height="250px" depth="40px" colour="rgba(220, 220, 220, 1)" image_f="/images/games/tail.png" padding="85%" border="10px" wireframe />
+            </div>
+            <div style="flex: 5;" id="game-detail">
+                <GameInfo title="Tail" id="tail" image="/images/games/tail.png" detail="2026 / Web">
+                    <p>
+                        Mess around with Bit's big fat tail by throwing them around the place.
+                        A little verlet-integration based rope simulator with extra fun bits.
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Play online", url: "/games/tail", icon: "/images/icons/game-controller.png" }
+                    ]} />
+                </GameInfo>
+                <GameInfo title="TicketMaster" id="ticketmaster" image="/images/games/ticketmaster.png" detail="2026 / EarthBound hack (SNES)">
+                    <p>
+                        A hack of EarthBound made with chalkmuncher for a week-long hacking jam. She did the art, I did the gameplay.
+                        You play as a duo of cats trying to cheat at a ticket-gathering promotion event by stealing people's tickets.
+                        It's the first EarthBound hack to have an action command system, like Paper Mario.
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Patch online", url: "/games/patcher?patch=ticketmaster", icon: "/images/icons/box-arrow-down.png" },
+                      { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/Jank-Jam-3/2359640", icon: "/images/icons/starmen.png" },
+                    ]} />
+                </GameInfo>
+                <GameInfo title="EarthBound Trial Tower" id="eb-trialtower" image="/images/games/tail.png" detail="2025 / EarthBound hack (SNES)">
+                    <p>
+                        Made for a 2-week hacking jam, EB Trial Tower turns the game into a complete rougelike;
+                        including 100 floors of battles, over 30 types of upgrades, and the bass from Gimmick!
+                        for NES.
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Patch online", url: "/games/patcher?patch=trialtower", icon: "/images/icons/box-arrow-down.png" },
+                      { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/Jank-Jam-2/2354659", icon: "/images/icons/starmen.png" }
+                    ]} />
+                </GameInfo>
+                <GameInfo title="Kirb's Underwhelming Bowling" id="kirbs_underwhelming_bowling" image="/images/games/kirbs_underwhelming_bowling.png" detail="2026 / EarthBound hack (SNES)">
+                    <p>
+                        Made for a 1-week hacking jam, this is a little tech demo hack of EarthBound which implements three rhythm games from Rhythm Heaven.
+                        Rhythm games are not trivial to make on SNES, so this was an interesting project.
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Patch online", url: "/games/patcher?patch=kirbs_underwhelming_bowling", icon: "/images/icons/box-arrow-down.png" },
+                      { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/Jank-Jam-4/page/2#post2369050", icon: "/images/icons/starmen.png" },
+                    ]} />
+                </GameInfo>
+                <GameInfo title="Rain Drop" id="raindrop" image="/images/games/raindrop.png" detail="2026 / Godot">
+                    <p>
+                        Made in a couple hours when I was bored. A twist on the classic "catch the falling things"-type game, where you have an additional bucket
+                        you can throw. But it might get struck by lightning, so watch out!
+                        <br>
+                        Controls:
+                        <ul>
+                            <li>Arrow keys - move</li>
+                            <li>Z - jump</li>
+                            <li>X - grab-throw bucket</li>
+                        </ul>
+                        Keyboard required!
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Play online", url: "/games/raindrop", icon: "/images/icons/game-controller.png" }
+                    ]} />
+                </GameInfo>
+                <GameInfo title="EarthGround" id="earthground" image="/images/games/earthground.png" detail="2025 / EarthBound hack (SNES)">
+                    <p>
+                        EarthBound, but it's a 2D platformer! Gravity is southwards and you can jump and wall kick with the Y Button.
+                        You can play the entire game with these weird physics. This was made for a 1-week hacking jam.
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Patch online", url: "/games/patcher?patch=earthground", icon: "/images/icons/box-arrow-down.png" },
+                      { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/1st-PK-Hack-Jank-Jam/2345182", icon: "/images/icons/starmen.png" },
+                    ]} />
+                </GameInfo>
+                <GameInfo title="MOTHER 3 Prologue Demake" id="mother3" image="/images/games/mother3.png" detail="2023 / EarthBound hack (SNES)">
+                    <p>
+                        A demake of (most of) MOTHER 3's prologue as a hack of EarthBound (MOTHER 2). However, there is no audio.
+                        This was made for Starmen.net's MOTHER 3 17th Anniversary Funfest.
+                    </p>
+                    <BoxButtonGroup links={[
+                      { name: "Patch online", url: "/games/patcher?patch=m3prologue", icon: "/images/icons/box-arrow-down.png" },
+                      { name: "Starmen.net", url: "https://forum.starmen.net/forum/Community/PKHack/The-MOTHER-3-Prologue-Demake", icon: "/images/icons/starmen.png" },
+                      { name: "Demonstration video", url: "https://youtu.be/bm8Q1VB88io", icon: "https://cdn.simpleicons.org/youtube/white?viewbox=auto" }
+                    ]} />
+                </GameInfo>
+            </div>
+        </div>
+    </LilBox>
+</StandardLayout>
+<style>
+@media(max-width: 991px) {
+    #game-wrapper {
+        display: block;
+    }
+    #game-display {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+#game-detail {
+    margin-left: 30px;
+}
+@media(max-width: 991px) {
+    #game-detail {
+        margin-left: unset;
+    }
+}
+@keyframes anim-resize {
+    from { scale: 0; }
+    to { scale: 1; }
+}
+@keyframes anim-resize-alt {
+    from { scale: 0; }
+    to { scale: 1 }
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-gap: 1.5rem;
+    justify-content: center;
+}
+</style>
+<script>
+const gamecards = document.querySelectorAll(".gamecard")
+const game_display = document.getElementById("game-display")
+const game_display_image = document.querySelector(".cube .face.front img")
+const game_entries = document.querySelectorAll(".game-info")
+const cube = document.querySelector(".cube")
+
+gamecards.forEach((gamecard) => {
+  gamecard.addEventListener("click", (event) => {
+    // Remove the wireframe attribute
+    cube.classList.remove("wireframe")
+
+    // Do the left half
+    game_display.style.scale = 1
+    if (game_display.style.animationName === "anim-resize-alt") {
+      game_display.style.animation = "anim-resize 0.15s linear"
+    } else {
+      game_display.style.animation = "anim-resize-alt 0.15s linear"
+    }
+    game_display_image.src = `/images/games/${gamecard.dataset.id}.png`
+
+    // Do the right half
+    // hide all
+    game_entries.forEach((entry) => {
+      entry.style.display = "none"
+    })
+    // unhide the one we want
+    document.querySelector(`.game-info.${gamecard.dataset.id}`).style.display = "block"
+    
+    // Reset the cube's animation
+    if (cube.style.animationName === "spin-alt") {
+      cube.style.animation = "spin 12s infinite linear"
+    } else {
+      cube.style.animation = "spin-alt 12s infinite linear"
+    }
+  })
+})
+</script>

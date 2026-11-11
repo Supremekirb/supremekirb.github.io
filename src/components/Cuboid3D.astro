@@ -1,0 +1,141 @@
+---
+const { width, height, depth, colour, transform, anim = "spin 12s infinite linear", image_f, image_b, padding="100%", border="0px", wireframe=false } = Astro.props
+---
+<div class="cube-container">
+    <div class:list={["cube", { wireframe: wireframe }]}>
+        <div class='face front' data-offset="1">
+            {image_f && <img src={image_f}>}
+        </div>
+        <div class='face back' data-offset="0.5">
+            {image_b && <img src={image_b}>}
+        </div>
+        <div class='face left' data-offset="0.75"></div>
+        <div class='face right' data-offset="0.25"></div>
+        <div class='face top' data-offset="1" data-hardcoded-lighting></div>
+        <div class='face bottom' data-offset="0.25" data-hardcoded-lighting></div>
+    </div>
+</div>
+<style define:vars={{width, height, depth, colour, transform, anim, padding, border }}>
+img {
+    width: var(--padding);
+    height: var(--padding);
+    border-radius: var(--border);
+    user-drag: none;
+    user-select: none;
+    pointer-events: none;
+}
+.cube-container {
+  width: var(--width);
+  height: var(--height);
+  padding: calc(var(--height) / 6) calc(var(--width) / 12);
+  perspective: 600px;
+  margin: auto;
+}
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: var(--transform);
+  animation: var(--anim);
+}
+.face {
+  position: absolute;
+  background-color: var(--colour);
+  user-drag: none;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cube.wireframe > .face {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid var(--colour);
+}
+.cube.wireframe > .face > img {
+    display: none;
+}
+
+.front, .back { width: var(--width); height: var(--height); }
+.left, .right { width: var(--depth); height: var(--height); }
+.top, .bottom { width: var(--width); height: var(--depth); }
+
+.front { transform: rotateY(0deg) translateZ(calc(var(--depth)/2)); }
+.back { transform: rotateY(180deg) translateZ(calc(var(--depth)/2)); }
+.left { transform: rotateY(-90deg) translateZ(calc(var(--depth)/2)); }
+.right { transform: rotateY(90deg) translateZ(calc(var(--width) - (var(--depth)/2))); }
+.top { transform: rotateX(90deg) translateZ(calc(var(--depth)/2)); }
+.bottom { transform: rotateX(-90deg) translateZ(calc(var(--height) - (var(--depth)/2))); }
+
+@keyframes spin {
+  from { transform: rotateY(0deg) }
+  to { transform: rotateY(360deg) }
+}
+@keyframes spin-alt {
+  from { transform: rotateY(0deg) }
+  to { transform: rotateY(360deg) }
+}
+</style>
+<script>
+function getDragRotation(element, event) {
+  const height_pos = event.offsetY / element.getBoundingClientRect().height
+  const rotation = Math.min(Math.max(((-80 * height_pos) + 40), -40), 40)
+  return rotation
+}
+const cube_containers = document.getElementsByClassName("cube-container")
+for (let i = 0; i < cube_containers.length; i++) {
+  const container = cube_containers.item(i)
+  container.onpointerdown = (event) => {
+    container.onpointermove = (event) => {
+      const cube = container.firstElementChild
+      cube.style.transition = null
+      cube.style.rotate = `x ${getDragRotation(container, event)}deg`
+    }
+    const cube = container.firstElementChild
+    cube.style.transition = "rotate 0.3s"
+    cube.style.rotate = `x ${getDragRotation(container, event)}deg`
+    container.setPointerCapture(event.pointerId)
+  }
+  container.onpointerup = (event) => {
+    container.onpointermove = null
+    const cube = container.firstElementChild
+    cube.style.transition = "rotate 0.3s"
+    cube.style.rotate = "x 0deg"
+    container.releasePointerCapture(event.pointerId)
+  }
+}
+
+const cubes = document.getElementsByClassName("cube")
+function step(t) {
+  for (let i = 0; i < cubes.length; i++) {
+    const cube = cubes.item(i)
+    const faces = cube.getElementsByClassName("face")
+    const anims = cube.getAnimations()
+    if (anims.length > 0) {
+    for (const anim of cube.getAnimations()) {
+      if (anim.animationName === "spin" || anim.animationName === "spin-alt") {
+        const anim_progress = anim.currentTime / (12*1000)
+          for (let i = 0; i < faces.length; i++) {
+            const face = faces.item(i)
+            const offset = parseFloat(face.dataset.offset)
+            const hardcoded_lighting = face.dataset.hardcodedLighting
+            let brightness
+            if (cube.classList.contains("wireframe")) {
+              brightness = 100
+            }
+            else if (hardcoded_lighting !== undefined) {
+              brightness = offset * 100
+            } else {
+              brightness = (Math.cos((anim_progress + offset) * 2 * Math.PI) + 1) * 50
+            }
+            face.style.filter = `brightness(${brightness}%)`
+          }
+        }
+      }
+    }
+  }
+  requestAnimationFrame(step)
+}
+requestAnimationFrame(step)
+</script>

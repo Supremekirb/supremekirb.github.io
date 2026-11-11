@@ -53,7 +53,7 @@ import RuleTitle from "/src/components/RuleTitle.astro"
             <T88x31 id="bitbutton-copyer" title="Click to copy me!" src="/images/gayass-derg/88x31.png" alt="Bit button" />
         </div>
         <br>
-        <div id="copy-response" style="text-align: center;">Click to copy it!<noscript> (JS only)</noscript></div>
+        <div id="copy-response" style="text-align: center; width: fit-content; margin: auto">Click to copy it!<noscript> (JS only)</noscript></div>
         <noscript>
             But since you have JS off, use this:
             <textarea readonly="true" style="resize: vertical">
@@ -63,6 +63,8 @@ import RuleTitle from "/src/components/RuleTitle.astro"
         </noscript>
     </LilBox>
     <LilBox hgrow legend="News">
+        <RuleTitle text="Games page!" />
+        <p>I added a page listing all (*some) of the released games and hacks I've made. You can even play some of them online. <a href="/games">Check it out!</a></p>
         <RuleTitle text="Backend migration" />
         <p>I've just finished recreating the site using Astro. Please let me know if anything is broken.</p>
         <RuleTitle text="Online patcher" />

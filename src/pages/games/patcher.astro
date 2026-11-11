@@ -88,6 +88,14 @@ import PatchInfo from "/src/components/PatchInfo.astro";
                         Made with Chalkmuncher in a couple weeks for Jank Jam 3.
                     </p>
                 </PatchInfo>
+                <PatchInfo id="info-kirbs_underwhelming_bowling" title="Kirb's Underwhelming Bowling" image="/images/kirbs_underwhelming_bowling.png">
+                    <p>
+                        A little tech demo hack which implements three rhythm games from Rhythm Heaven.
+                        Rhythm games are not trivial to make on SNES, so this was an interesting project.
+                        <br>
+                        Made in a week for Jank Jam 4.
+                    </p>
+                </PatchInfo>
                 <PatchInfo id="info-m3prologue" title="MOTHER 3 Prologue Recreation" image="/images/mother3.png">
                     <p>
                         This hack recreates a portion of MOTHER 3's prologue as accurately as possible.
@@ -110,13 +118,15 @@ const FILENAMES_TO_ID = {
   "1 earthground_1_0.bps": "earthground",
   "2 ebtrialtower_0_2.bps": "trialtower",
   "3 ticketmaster_1_1.bps": "ticketmaster",
-  "4 eb_m3_prologue_0_1.bps": "m3prologue"
+  "4 kirbs_underwhelming_bowling_1_0.bps": "kirbs_underwhelming_bowling",
+  "5 eb_m3_prologue_0_1.bps": "m3prologue",
 }
 const IDS_TO_FILENAME = {
   "earthground": "1 earthground_1_0.bps",
   "trialtower": "2 ebtrialtower_0_2.bps",
   "ticketmaster": "3 ticketmaster_1_1.bps",
-  "m3prologue": "4 eb_m3_prologue_0_1.bps"
+  "kirbs_underwhelming_bowling": "4 kirbs_underwhelming_bowling_1_0.bps",
+  "m3prologue": "5 eb_m3_prologue_0_1.bps",
 }
 window.addEventListener('load', async function(){
     const patcherSettings={
@@ -159,7 +169,13 @@ window.addEventListener('load', async function(){
             id: "ticketmaster"
         },
         {
-            file: "4 eb_m3_prologue_0_1.bps",
+            file: "4 kirbs_underwhelming_bowling_1_0.bps",
+            name: "EB | Kirb's Underwhelming Bowling (v1.0)",
+            outputName: "kirbs_underwhelming_bowling_1_0",
+            id: "kirbs_underwhelming_bowling"
+        },
+        {
+            file: "5 eb_m3_prologue_0_1.bps",
             name: "EB | MOTHER 3 Prologue Recreation (v0.1)",
             outputName: "eb_m3_prologue_0_1",
             id: "m3-prologue"

@@ -1,0 +1,43 @@
+---
+const { id, title } = Astro.props;
+---
+<span data-id={id} class="gamecard">
+    <div>
+        <img src=`/images/games/${id}.png`>
+    </div>
+</span>
+<style>
+span {
+    cursor: pointer;
+    user-drag: none;
+    user-select: none;
+}
+div {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    background: linear-gradient(180deg,rgba(245, 245, 245, 1) 0%, rgba(245, 245, 245, 1) 85%, rgba(180, 170, 180, 1) 95%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-drag: none;
+    user-select: none;
+    position: relative;
+}
+img {
+    width: 80%;
+    height: 80%;
+    text-align: center;
+    border-radius: 8px;
+    user-drag: none;
+    user-select: none;
+
+}
+span:hover div {
+    transform: translateY(2px);
+}
+span:active div {
+    transform: translateY(5px);
+}
+</style>

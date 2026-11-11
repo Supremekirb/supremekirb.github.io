@@ -6,7 +6,9 @@ import BlogPost from "/src/components/BlogPost.astro"
 import BoxButtonGroup from "/src/components/BoxButtonGroup.astro"
 
 import { getCollection } from 'astro:content';
-const posts = await getCollection('blog');
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
 ---
 <StandardLayout title="•The blog" args={{ title: "Kirb's blog" }}>

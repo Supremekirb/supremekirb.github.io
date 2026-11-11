@@ -1,0 +1,10 @@
+---
+import RuleTitle from "/src/components/RuleTitle.astro";
+
+const { title, detail, id } = Astro.props;
+---
+<div class=`game-info ${id}` style="display: none;">
+    <RuleTitle text={title} HeaderType="h1" />
+    <i style="color: #A0A0A0; size: 80%;">{detail}</i>
+    <slot />
+</div>
